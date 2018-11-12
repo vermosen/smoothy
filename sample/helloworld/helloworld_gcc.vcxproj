@@ -20,6 +20,7 @@
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{FC1A4D80-50E9-41DA-9192-61C0DBAA00D2}</LinuxProjectType>
     <kProjectPath>/smoothy/sample/helloworld</kProjectPath>
+    <kAppName>helloworld_$(Configuration)</kAppName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -33,10 +34,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <Import Project="..\..\..\utils\visualstudio\propertySheet_cmake.props" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+  <ImportGroup Label="PropertySheets">
     <Import Project="..\..\..\utils\visualstudio\propertySheet_cmake.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -46,7 +44,7 @@
     <RemotePostBuildEventUseInBuild>false</RemotePostBuildEventUseInBuild>
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
-    <NMakeIncludeSearchPath>$(R_INCLUDE_ROOT);</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -58,6 +56,18 @@
     <PreBuildEvent>
       <Command>$(R_DEFAULT_PREBUILD)</Command>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+        @ECHO ON
+        set node=
+        call :getNode node $(RemoteTarget)
+        $(R_DEFAULT_POSTBUILD_APP)
+
+        EXIT /B
+        :getNode
+        set %~1=%~3
+        goto:EOF</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
