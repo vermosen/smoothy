@@ -38,7 +38,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemGroup>
+    <Text Include="smoothy\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
+    <Text Include="test\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="smoothy\definition.h" />
+    <ClInclude Include="smoothy\optimization\methods\linesearches\bfgs.h" />
+    <ClInclude Include="smoothy\optimization\methods\linesearches\steepestdescent.h" />
+    <ClInclude Include="smoothy\optimization\problem.h" />
+    <ClInclude Include="smoothy\optimization\state.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
   </ItemGroup>
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

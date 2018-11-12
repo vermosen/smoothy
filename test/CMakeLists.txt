@@ -1,4 +1,4 @@
-﻿# CMakeList.txt : CMake project for smoothy, include source and define
+# CMakeList.txt : CMake project for smoothy, include source and define
 # project specific logic here.
 #
 cmake_minimum_required (VERSION 3.12)
@@ -11,6 +11,9 @@ endif (CMAKE_CONF MATCHES "Debug")
 # general configuration
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# find boost
+find_package(Boost)
 
 # find Eigen3
 find_package(Eigen3 3.3.5)
@@ -32,4 +35,4 @@ include_directories(${MKL_INCLUDE_DIRS})
 add_definitions(-DEIGEN_USE_MKL_ALL)
 
 # Add source to this project's executable.
-add_executable (helloworld_${CMAKE_CONF} "main.cpp")
+add_executable (unittest_${CMAKE_CONF} "main.cpp")
