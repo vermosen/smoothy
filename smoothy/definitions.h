@@ -4,7 +4,7 @@
 
 #include <complex>
 
-namespace smoothy    {
+namespace smoothy   {
 namespace math      {
 
 	// real type

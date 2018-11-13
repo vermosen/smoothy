@@ -34,16 +34,23 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets">
-    <Import Project="..\..\..\utils\visualstudio\propertySheet_cmake.props" />
+    <Import Project="..\utils\visualstudio\propertySheet_cmake.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
+    <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
+    <NMakeIncludeSearchPath>$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
+    <LocalRemoteCopySources>false</LocalRemoteCopySources>
+  </PropertyGroup>
   <ItemGroup>
+    <Text Include="cmake\smoothy.cmake" />
+    <Text Include="sample\CMakeLists.txt" />
     <Text Include="smoothy\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
-    <Text Include="test\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="smoothy\definition.h" />
+    <ClInclude Include="smoothy\definitions.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\bfgs.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\steepestdescent.h" />
     <ClInclude Include="smoothy\optimization\problem.h" />
@@ -53,7 +60,15 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
   </ItemGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Command>$(R_DEFAULT_PREBUILD)</Command>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

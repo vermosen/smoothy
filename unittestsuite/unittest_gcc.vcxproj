@@ -11,17 +11,17 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{39650c84-0c2e-4bf1-9abc-cfc2805535d4}</ProjectGuid>
+    <ProjectGuid>{8677CA7E-81CA-4F4A-87F8-7AF308E5B2DB}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>/helloworld_gcc</RootNamespace>
+    <RootNamespace>/unittest_gcc</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{FC1A4D80-50E9-41DA-9192-61C0DBAA00D2}</LinuxProjectType>
-    <kProjectPath>/smoothy/sample/helloworld</kProjectPath>
-    <kBinPath>/smoothy/$(Configuration)/sample/helloworld</kBinPath>
-    <kAppName>helloworld_$(Configuration)</kAppName>
+    <kProjectPath>/smoothy/unittestsuite</kProjectPath>
+    <kBinPath>/smoothy/$(Configuration)/unittestsuite</kBinPath>
+    <kAppName>unittest_$(Configuration)</kAppName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -36,7 +36,7 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets">
-    <Import Project="..\..\..\utils\visualstudio\propertySheet_cmake.props" />
+    <Import Project="..\..\utils\visualstudio\propertySheet_cmake.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -51,9 +51,13 @@
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="tests\optimization.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tests\optimization.h" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
