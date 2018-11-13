@@ -22,8 +22,9 @@ namespace testSuite {
 
     boost::unit_test_framework::test_suite* optimization::suite() {
         boost::unit_test_framework::test_suite* suite = BOOST_TEST_SUITE("optimization");
-        suite->add(BOOST_TEST_CASE(&optimization::helloworld), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::helloworld        ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::set_criteria      ), 0, MAX_TIME_SEC);
         return suite;
     }
 
@@ -88,5 +89,9 @@ namespace testSuite {
             auto res2 = func.valueAndGradient(gradient, m_x);
             BOOST_CHECK_CLOSE(res1, res2, T_TOL);
         }
+    }
+
+    void optimization::set_criteria() {
+
     }
 }}

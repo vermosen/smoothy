@@ -23,6 +23,7 @@ namespace testSuite {
 	public:
         static void helloworld();
         static void rosenbrock_values();
+        static void set_criteria();
 
 		static boost::unit_test_framework::test_suite* suite();
 	};

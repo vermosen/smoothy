@@ -9,12 +9,13 @@
 namespace smoothy       {
 namespace optimization  {
 
+    // TODO: the function has to implement traits (for example, being differentiable)
 	template<
           template<class> class Func
         , class Val
     >
 	class costFunction : public meta::curiouslyRecurring<Func<Val> > {
-        using child = meta::curiouslyRecurring<Func<Val> >;
+        using child = meta::curiouslyRecurring<Func<Val>>;
 	public:
 		typedef typename smoothy::traits::row<Val>::type arg_type;
 
