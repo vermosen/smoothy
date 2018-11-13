@@ -15,7 +15,7 @@ namespace norms     {
     };
 }
 
-    template <typename Val, size Dim, norms::type>
+    template <typename Val, norms::type>
     class norm;
 }}
 
