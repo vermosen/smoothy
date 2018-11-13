@@ -40,7 +40,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
-    <NMakeIncludeSearchPath>$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>.;$(RUBEDO_BOOST_EX);$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
     <LocalRemoteCopySources>false</LocalRemoteCopySources>
   </PropertyGroup>
   <ItemGroup>
@@ -51,10 +51,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="smoothy\definitions.h" />
+    <ClInclude Include="smoothy\meta\patterns\curiouslyRecurring.h" />
+    <ClInclude Include="smoothy\meta\patterns\visitor.h" />
+    <ClInclude Include="smoothy\optimization\costfunction.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\bfgs.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\steepestdescent.h" />
     <ClInclude Include="smoothy\optimization\problem.h" />
     <ClInclude Include="smoothy\optimization\state.h" />
+    <ClInclude Include="smoothy\traits\fwd\dimension.h" />
+    <ClInclude Include="smoothy\traits\fwd\precision.h" />
+    <ClInclude Include="smoothy\traits\fwd\row.h" />
+    <ClInclude Include="smoothy\traits\row.h" />
+    <ClInclude Include="smoothy\utils\adapter.h" />
+    <ClInclude Include="smoothy\utils\fwd\make_row.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

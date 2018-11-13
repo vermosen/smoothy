@@ -5,7 +5,6 @@
 #include <complex>
 
 namespace smoothy   {
-namespace math      {
 
 	// real type
 	typedef double real;
@@ -21,6 +20,6 @@ namespace math      {
 
 	// size type
 	typedef std::complex<real> complex;
-}}
+}
 
 #endif

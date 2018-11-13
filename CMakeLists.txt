@@ -29,6 +29,34 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 include(GNUInstallDirs)
 include(CheckCXXCompilerFlag)
 
+# general configuration
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# dependencies
+
+# find boost
+find_package(Boost)
+
+# find Eigen3
+find_package(Eigen3 3.3.5)
+include_directories(${EIGEN3_INCLUDE_DIRS})
+
+# enable Intel-MKL
+set(MKL_DIR "/opt/intel/mkl")
+set(MKL_INCLUDE_DIRS "${MKL_DIR}/include")
+set(MKL_LIB_DIRS "${MKL_DIR}/lib/intel64")
+
+find_library(LIB_MKL_RT NAMES mkl_rt HINTS ${MKL_LIB_DIRS})
+find_library(LIB_PTHREAD NAMES pthread)
+
+set(MKL_LIBRARY
+	${LIB_MKL_RT}
+	${LIB_PTHREAD})
+include_directories(${MKL_INCLUDE_DIRS})
+
+add_definitions(-DEIGEN_USE_MKL_ALL)
+
 add_subdirectory(sample)
 add_subdirectory(unittestsuite)
 add_subdirectory(smoothy)

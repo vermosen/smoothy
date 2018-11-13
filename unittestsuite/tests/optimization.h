@@ -7,9 +7,23 @@
 namespace smoothy   {
 namespace testSuite {
 
+    // point classes for optimization tests
+    struct point2d {
+        double m_x1;
+        double m_x2;
+    };
+
+    struct point3d {
+        double m_x1;
+        double m_x2;
+        double m_x3;
+    };
+
 	class optimization {
 	public:
-		static void helloworld();
+        static void helloworld();
+        static void rosenbrock_values();
+
 		static boost::unit_test_framework::test_suite* suite();
 	};
 }}

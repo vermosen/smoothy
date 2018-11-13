@@ -47,7 +47,7 @@
     </BuildCommandLine>
     <CleanCommandLine>
     </CleanCommandLine>
-    <NMakeIncludeSearchPath>$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>../..;$(RUBEDO_BOOST_EX);$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
