@@ -2,7 +2,7 @@
 #ifndef OPTIMIZATION_CRITERIA_NORMS_DETAILS_BASE_H
 #define OPTIMIZATION_CRITERIA_NORMS_DETAILS_BASE_H
 
-#include <smoothy/meta/patterns/curiouslyRecurring.h>
+#include <smoothy/meta/patterns/curiouslyrecurring.h>
 
 namespace smoothy   {
 namespace math      {

@@ -2,7 +2,7 @@
 #ifndef SMOOTHY_OPTIMIZATION_COST_FUNCTION_H
 #define SMOOTHY_OPTIMIZATION_COST_FUNCTION_H
 
-#include <smoothy/meta/patterns/curiouslyRecurring.h>
+#include <smoothy/meta/patterns/curiouslyrecurring.h>
 #include <smoothy/definitions.h>
 #include <smoothy/traits/fwd/row.h>
 

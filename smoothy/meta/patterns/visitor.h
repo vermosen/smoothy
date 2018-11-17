@@ -2,7 +2,7 @@
 #ifndef SMOOTHY_META_PATTERNS_VISITOR_H
 #define SMOOTHY_META_PATTERNS_VISITOR_H
 
-#include <smoothy/meta/patterns/curiouslyRecurring.h>
+#include <smoothy/meta/patterns/curiouslyrecurring.h>
 
 namespace smoothy   {
 namespace meta      {
@@ -12,7 +12,7 @@ namespace details   {
 
     template <class T>
     class individual;
-}}}
+}
 
     template <class ... Types>
     class visitor : public details::visitor

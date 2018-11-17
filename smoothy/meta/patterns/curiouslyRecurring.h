@@ -2,6 +2,8 @@
 #ifndef SMOOTHY_META_PATTERNS_CURIOUSLY_RECURRING_H
 #define SMOOTHY_META_PATTERNS_CURIOUSLY_RECURRING_H
 
+#include <smoothy/meta/patterns/fwd/curiouslyrecurring.h>
+
 namespace smoothy   {
 namespace meta      {
 
@@ -13,7 +15,7 @@ namespace meta      {
      *
      * note: the extra Base template argument may be used to
      * solve anbiguity in case the pattern is used in some
-     * multi-inheritance context (e.g. curious mixins)
+     * multi-inheritance context.
      */
 	template <
           class Impl

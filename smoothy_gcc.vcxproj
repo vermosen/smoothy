@@ -51,8 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="smoothy\definitions.h" />
-    <ClInclude Include="smoothy\meta\patterns\curiouslyRecurring.h" />
+    <ClInclude Include="smoothy\meta\asm\comment.h" />
+    <ClInclude Include="smoothy\meta\patterns\curiouslyrecurring.h" />
+    <ClInclude Include="smoothy\meta\patterns\curiousmixin.h" />
+    <ClInclude Include="smoothy\meta\patterns\fwd\curiouslyrecurring.h" />
+    <ClInclude Include="smoothy\meta\patterns\fwd\curiousmixin.h" />
     <ClInclude Include="smoothy\meta\patterns\visitor.h" />
+    <ClInclude Include="smoothy\meta\preprocessor\cat.h" />
     <ClInclude Include="smoothy\optimization\costfunction.h" />
     <ClInclude Include="smoothy\optimization\criteria\gauges\functiontolerance.h" />
     <ClInclude Include="smoothy\optimization\criteria\gauges\maxiteration.h" />
