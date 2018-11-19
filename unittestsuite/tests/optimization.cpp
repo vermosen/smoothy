@@ -2,7 +2,12 @@
 #include <definitions.h>
 
 #include <smoothy/definitions.h>
+
+#include <smoothy/optimization/gauge.h>
 #include <smoothy/optimization/costfunction.h>
+#include <smoothy/optimization/criteria/functiontolerance.h>
+#include <smoothy/optimization/criteria/maxiteration.h>
+
 #include <smoothy/utils/adapter.h>
 
 SMOOTHY_DATA_ADAPTER(
@@ -92,6 +97,16 @@ namespace testSuite {
     }
 
     void optimization::set_criteria() {
+        using namespace smoothy::optimization;
+        
+        using state_type = double;              // dummy
 
+        using criteria_type = gauge<
+              state_type
+            , criteria::type::functionTolerance
+            , criteria::type::maxIterations
+        >;
+
+        criteria_type c({ 1 }, { 1 });
     }
 }}

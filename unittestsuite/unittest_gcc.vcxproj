@@ -57,6 +57,7 @@
     <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="definitions.h" />
     <ClInclude Include="tests\optimization.h" />
     <ClInclude Include="utils\point.h" />
   </ItemGroup>

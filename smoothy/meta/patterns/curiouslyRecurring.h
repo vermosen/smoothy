@@ -19,7 +19,7 @@ namespace meta      {
      */
 	template <
           class Impl
-        , class Base = void
+        , class Base
     >
 	class curiouslyRecurring {
 	protected:
