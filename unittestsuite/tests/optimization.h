@@ -21,9 +21,9 @@ namespace testSuite {
 
 	class optimization {
 	public:
-        static void helloworld();
         static void rosenbrock_values();
         static void set_criteria();
+        static void set_problem();
 
 		static boost::unit_test_framework::test_suite* suite();
 	};

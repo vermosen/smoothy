@@ -19,13 +19,13 @@ file(GLOB source_files
     )
 
 # Add source to this project's executable.
-add_executable (unittest_${CMAKE_CONF} ${source_files})
+add_executable (smoothytest_${CMAKE_CONF} ${source_files})
 
-target_include_directories(unittest_${CMAKE_CONF} INTERFACE
+target_include_directories(smoothytest_${CMAKE_CONF} INTERFACE
 	"${SMOOTHY_INCLUDE_DIR}"
 )
 
-target_include_directories(unittest_${CMAKE_CONF} INTERFACE
+target_include_directories(smoothytest_${CMAKE_CONF} INTERFACE
 	"${PROJECT_SOURCE_DIR}"
 )
 

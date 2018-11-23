@@ -4,6 +4,7 @@
 #include <smoothy/definitions.h>
 
 #include <smoothy/optimization/gauge.h>
+#include <smoothy/optimization/problem.h>
 #include <smoothy/optimization/costfunction.h>
 #include <smoothy/optimization/criteria/functiontolerance.h>
 #include <smoothy/optimization/criteria/maxiteration.h>
@@ -27,9 +28,9 @@ namespace testSuite {
 
     boost::unit_test_framework::test_suite* optimization::suite() {
         boost::unit_test_framework::test_suite* suite = BOOST_TEST_SUITE("optimization");
-        suite->add(BOOST_TEST_CASE(&optimization::helloworld        ), 0, MAX_TIME_SEC);
         suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values ), 0, MAX_TIME_SEC);
         suite->add(BOOST_TEST_CASE(&optimization::set_criteria      ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::set_problem       ), 0, MAX_TIME_SEC);
         return suite;
     }
 
@@ -59,11 +60,6 @@ namespace testSuite {
         double m_a;
         double m_b;
     };
-
-	void optimization::helloworld()
-	{
-        BOOST_TEST_MESSAGE("hello world");
-	}
 
     void optimization::rosenbrock_values() {
 
@@ -108,5 +104,31 @@ namespace testSuite {
         >;
 
         criteria_type c({ 1 }, { 1 });
+    }
+
+    void optimization::set_problem() {
+        using namespace smoothy::optimization;
+
+        using state_type = double;              // dummy
+
+        using criteria_type = gauge<
+              state_type
+            , criteria::type::functionTolerance
+            , criteria::type::maxIterations
+        >;
+
+        using value_type = point2d;
+
+        using problem_type = problem<
+              rosenbrock
+            , criteria_type
+            , value_type
+        >;
+
+        rosenbrock<point2d> func(1.0, 1.0);
+        criteria_type c({ 1 }, { 1 });
+        point2d guess{ 1.0, 1.0 };
+
+        problem_type(func, c, guess);
     }
 }}

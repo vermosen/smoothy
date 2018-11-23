@@ -14,8 +14,7 @@ namespace meta      {
      * Cambridge University Press, New York, New York, 1996.
      *
      * note: the extra Base template argument may be used to
-     * solve anbiguity in case the pattern is used in some
-     * multi-inheritance context.
+     * solve ambiguity in some multi-inheritance situations.
      */
 	template <
           class Impl

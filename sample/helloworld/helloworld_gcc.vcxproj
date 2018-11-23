@@ -48,6 +48,12 @@
     <CleanCommandLine>
     </CleanCommandLine>
     <NMakeIncludeSearchPath>../..;$(RUBEDO_BOOST_EX);$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -57,19 +63,16 @@
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
-      <Command>$(R_DEFAULT_PREBUILD)</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>
-        @ECHO ON
-        set node=
-        call :getNode node $(RemoteTarget)
-        $(R_DEFAULT_POSTBUILD_APP)
-
-        EXIT /B
-        :getNode
-        set %~1=%~3
-        goto:EOF</Command>
+      <Command>$(R_DEFAULT_POSTBUILD_APP)</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PostBuildEvent>
+      <Command>$(R_DEFAULT_POSTBUILD_APP)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

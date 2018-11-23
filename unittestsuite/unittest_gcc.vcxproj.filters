@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="tests\optimization.cpp" />
+    <ClCompile Include="tests\meta.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
@@ -11,5 +12,6 @@
     <ClInclude Include="tests\optimization.h" />
     <ClInclude Include="utils\point.h" />
     <ClInclude Include="definitions.h" />
+    <ClInclude Include="tests\meta.h" />
   </ItemGroup>
 </Project>
