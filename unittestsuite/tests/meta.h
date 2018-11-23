@@ -10,6 +10,7 @@ namespace testSuite {
 	class meta {
 	public:
         static void helloworld();
+        static void curiousmixins();
 
 		static boost::unit_test_framework::test_suite* suite();
 	};

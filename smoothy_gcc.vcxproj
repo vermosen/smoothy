@@ -78,6 +78,8 @@
     <ClInclude Include="smoothy\optimization\state.h" />
     <ClInclude Include="smoothy\optimization\states\differentiable.h" />
     <ClInclude Include="smoothy\optimization\states\iterable.h" />
+    <ClInclude Include="smoothy\traits\fwd\problem.h" />
+    <ClInclude Include="smoothy\traits\problem.h" />
     <ClInclude Include="smoothy\traits\value.h" />
     <ClInclude Include="smoothy\traits\fwd\value.h" />
     <ClInclude Include="smoothy\traits\fwd\dimension.h" />

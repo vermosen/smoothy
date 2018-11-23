@@ -7,24 +7,24 @@
 namespace smoothy       {
 namespace optimization  {
 
-    template <typename State, criteria::type ... Type>
+    template <criteria::type ... Type>
     struct gauge;
 
     template <
-          typename State
-        , criteria::type First
+          criteria::type First
         , criteria::type ... Rest
     >
-    struct gauge<State, First, Rest...> : public criterion<First>
-                                        , public gauge<State, Rest...> {
+    struct gauge<First, Rest...> : public criterion<First>
+                                 , public gauge<Rest...> {
 
         gauge(const typename criterion<First >::pack& first
             , const typename criterion<Rest  >::pack&... rest...)
-            : gauge<State, Rest...>(rest...), criterion<First>(first) {}
+            : gauge<Rest...>(rest...), criterion<First>(first) {}
 
+        template <typename State>
         criteria::type apply(State& from, State& to) {
             if (criterion<First>::template apply<State>(from, to)) {
-                return gauge<State, Rest...>::apply(from, to);
+                return gauge<Rest...>::template apply<State>(from, to);
             }
             else {
                 return First;
@@ -32,15 +32,13 @@ namespace optimization  {
         }
     };
 
-    template <
-          typename State
-        , criteria::type First
-    >
-    struct gauge<State, First> : public criterion<First> {
+    template <criteria::type First>
+    struct gauge<First> : public criterion<First> {
 
         gauge(const typename criterion<First>::pack& first)
             : criterion<First>(first) {}
 
+        template <typename State>
         criteria::type apply(State& from, State& to) {
             if (criterion<First>::template apply<State>(from, to)) {
                 return criteria::type::none;

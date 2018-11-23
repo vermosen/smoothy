@@ -5,9 +5,14 @@
 
 #include <smoothy/optimization/gauge.h>
 #include <smoothy/optimization/problem.h>
+#include <smoothy/optimization/state.h>
 #include <smoothy/optimization/costfunction.h>
 #include <smoothy/optimization/criteria/functiontolerance.h>
 #include <smoothy/optimization/criteria/maxiteration.h>
+#include <smoothy/optimization/states/iterable.h>
+#include <smoothy/optimization/states/differentiable.h>
+#include <smoothy/traits/problem.h>
+#include <smoothy/traits/value.h>
 
 #include <smoothy/utils/adapter.h>
 
@@ -94,12 +99,9 @@ namespace testSuite {
 
     void optimization::set_criteria() {
         using namespace smoothy::optimization;
-        
-        using state_type = double;              // dummy
 
         using criteria_type = gauge<
-              state_type
-            , criteria::type::functionTolerance
+              criteria::type::functionTolerance
             , criteria::type::maxIterations
         >;
 
@@ -109,11 +111,8 @@ namespace testSuite {
     void optimization::set_problem() {
         using namespace smoothy::optimization;
 
-        using state_type = double;              // dummy
-
         using criteria_type = gauge<
-              state_type
-            , criteria::type::functionTolerance
+              criteria::type::functionTolerance
             , criteria::type::maxIterations
         >;
 
@@ -123,12 +122,13 @@ namespace testSuite {
               rosenbrock
             , criteria_type
             , value_type
+            , states::iterable
+            , states::differentiable
         >;
 
         rosenbrock<point2d> func(1.0, 1.0);
         criteria_type c({ 1 }, { 1 });
         point2d guess{ 1.0, 1.0 };
-
-        problem_type(func, c, guess);
+        problem_type p(func, c, guess);
     }
 }}

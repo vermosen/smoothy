@@ -20,6 +20,8 @@ namespace meta      {
     >
     struct curiousMixin : public Ts<Base>... {
 
+        curiousMixin() {}
+
         template <typename ... Xs>
         curiousMixin(Xs&& ... xs)
             : Ts<Base>(std::forward<Xs>(xs))... {}
