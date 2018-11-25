@@ -72,8 +72,11 @@
     <ClInclude Include="smoothy\math\norms\regularized.h" />
     <ClInclude Include="smoothy\optimization\criterion.h" />
     <ClInclude Include="smoothy\optimization\gauge.h" />
+    <ClInclude Include="smoothy\optimization\methods\linesearch.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\bfgs.h" />
     <ClInclude Include="smoothy\optimization\methods\linesearches\steepestdescent.h" />
+    <ClInclude Include="smoothy\optimization\methods\linesearches\stride.h" />
+    <ClInclude Include="smoothy\optimization\methods\linesearches\strides\armijogoldstein.h" />
     <ClInclude Include="smoothy\optimization\problem.h" />
     <ClInclude Include="smoothy\optimization\state.h" />
     <ClInclude Include="smoothy\optimization\states\differentiable.h" />

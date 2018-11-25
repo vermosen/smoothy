@@ -11,6 +11,7 @@
 #include <smoothy/optimization/criteria/maxiteration.h>
 #include <smoothy/optimization/states/iterable.h>
 #include <smoothy/optimization/states/differentiable.h>
+#include <smoothy/optimization/methods/linesearches/strides/armijogoldstein.h>
 #include <smoothy/traits/problem.h>
 #include <smoothy/traits/value.h>
 
@@ -33,9 +34,10 @@ namespace testSuite {
 
     boost::unit_test_framework::test_suite* optimization::suite() {
         boost::unit_test_framework::test_suite* suite = BOOST_TEST_SUITE("optimization");
-        suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values ), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::set_criteria      ), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::set_problem       ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values     ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::set_criteria          ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::set_problem           ), 0, MAX_TIME_SEC);
+        suite->add(BOOST_TEST_CASE(&optimization::armijogoldstein_stride), 0, MAX_TIME_SEC);
         return suite;
     }
 
@@ -105,7 +107,7 @@ namespace testSuite {
             , criteria::type::maxIterations
         >;
 
-        criteria_type c({ 1 }, { 1 });
+        criteria_type c({ 1e-8 }, { 1000 });
     }
 
     void optimization::set_problem() {
@@ -127,8 +129,37 @@ namespace testSuite {
         >;
 
         rosenbrock<point2d> func(1.0, 1.0);
-        criteria_type c({ 1 }, { 1 });
+        criteria_type c({ 1e-8 }, { 1000 });
         point2d guess{ 1.0, 1.0 };
         problem_type p(func, c, guess);
+    }
+
+    void optimization::armijogoldstein_stride() {
+
+        using namespace smoothy::optimization;
+
+        using criteria_type = gauge<
+              criteria::type::functionTolerance
+            , criteria::type::maxIterations
+        >;
+
+        using value_type = point2d;
+
+        using problem_type = problem<
+            rosenbrock
+            , criteria_type
+            , value_type
+            , states::iterable
+            , states::differentiable
+        >;
+
+        rosenbrock<point2d> func(1.0, 1.0);
+        criteria_type c({ 1e-8 }, { 1000 });
+        point2d guess{ 0.5, -0.5 };
+        problem_type p(func, c, guess);
+
+        lineSearches::strides::armijoGoldstein<problem_type> dir();
+
+        dir.
     }
 }}

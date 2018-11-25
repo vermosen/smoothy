@@ -24,6 +24,7 @@ namespace testSuite {
         static void rosenbrock_values();
         static void set_criteria();
         static void set_problem();
+        static void armijogoldstein_stride();
 
 		static boost::unit_test_framework::test_suite* suite();
 	};

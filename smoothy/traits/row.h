@@ -13,9 +13,10 @@ namespace traits    {
 
     template<typename Val>
     struct row {
-        typedef Eigen::Matrix <
-              typename traits::precision<Val>::type, 1
-            , traits::dimension<Val>::value> type;
+        using type = Eigen::Matrix <
+              typename traits::precision<Val>::type
+            , 1, traits::dimension<Val>::value
+        >;
     };
 }}
 

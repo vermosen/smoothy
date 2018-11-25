@@ -19,11 +19,11 @@ namespace optimization  {
         , template<class> class ... Traits
     >
     class problem {
-        using value_type = Val;
+        using value_type    = Val;
         using function_type = Func<Val>;
         using criteria_type = Criteria;
-        using problem_type = problem<Func, Criteria, Val>;
-        using state_type = state<problem_type, Traits...>;
+        using problem_type  = problem<Func, Criteria, Val>;
+        using state_type    = state<problem_type, Traits...>;
 
     public:
         problem(const Func<Val>&    func
@@ -32,7 +32,7 @@ namespace optimization  {
 
         criteria_type&	criteria()  { return m_criteria;    }
         Func<Val>&		function()  { return m_func;        }
-        state_type&		current()   { return m_state;       }
+        state_type&		current ()  { return m_state;       }
 
     private:
         state_type		m_state     ;

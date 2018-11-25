@@ -11,7 +11,7 @@ namespace optimization  {
     class criterion<criteria::type::functionTolerance> {
     public:
         struct pack {
-            int m_i;
+            double m_precision;
         };
 
         criterion(const pack& p) : m_pack(p) {}
@@ -19,7 +19,6 @@ namespace optimization  {
     protected:
         template <typename State>
         bool apply(State& from, State& to) { return true; }
-
         pack m_pack;
     };
 }}
