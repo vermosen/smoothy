@@ -10,7 +10,6 @@ namespace norms     {
 
     template <typename Child>
     class base : public meta::curiouslyRecurring<Child> {
-
     public:
         /*typename traits::retval<Child>::type*/ void apply(/*typename traits::arg<Child>::type vals*/) {
             return meta::curiouslyRecurring<Child>::impl().applyImpl(/*vals*/);

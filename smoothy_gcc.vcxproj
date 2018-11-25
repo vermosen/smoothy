@@ -83,12 +83,12 @@
     <ClInclude Include="smoothy\optimization\states\iterable.h" />
     <ClInclude Include="smoothy\traits\fwd\problem.h" />
     <ClInclude Include="smoothy\traits\problem.h" />
-    <ClInclude Include="smoothy\traits\value.h" />
-    <ClInclude Include="smoothy\traits\fwd\value.h" />
+    <ClInclude Include="smoothy\traits\point.h" />
+    <ClInclude Include="smoothy\traits\fwd\point.h" />
     <ClInclude Include="smoothy\traits\fwd\dimension.h" />
     <ClInclude Include="smoothy\traits\fwd\precision.h" />
-    <ClInclude Include="smoothy\traits\fwd\row.h" />
-    <ClInclude Include="smoothy\traits\row.h" />
+    <ClInclude Include="smoothy\traits\fwd\value.h" />
+    <ClInclude Include="smoothy\traits\value.h" />
     <ClInclude Include="smoothy\utils\adapter.h" />
     <ClInclude Include="smoothy\utils\fwd\make_row.h" />
   </ItemGroup>

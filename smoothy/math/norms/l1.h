@@ -5,7 +5,7 @@
 #include <smoothy/math/norms/details/base.h>
 
 #include <smoothy/traits/fwd/dimension.h>
-#include <smoothy/traits/fwd/row.h>
+#include <smoothy/traits/fwd/value.h>
 #include <smoothy/math/norm.h>
 
 namespace smoothy   {
@@ -16,11 +16,11 @@ namespace math      {
 
         using ancestor = norms::base<norm<Val, norms::type::regularized>>;
         using typename precision_type = traits::precision<Val>::type;
-        using typename row_type = traits::row<Val>::type;
+        using typename value_type = traits::value<Val>::type;
         static_assert(traits::dimension<Val>::value == 1);
 
     public:
-        static inline precision_type applyImpl(row_type vnew, row_type vold) {
+        static inline precision_type applyImpl(value_type vnew, value_type vold) {
             return (fnew - fold).abs();
         }
     };

@@ -8,9 +8,10 @@
 
 #include <smoothy/definitions.h>
 
+#include <smoothy/traits/value.h>
+
 #include <smoothy/traits/fwd/dimension.h>
 #include <smoothy/traits/fwd/precision.h>
-#include <smoothy/traits/row.h>
 #include <smoothy/utils/fwd/make_row.h>
 
 #define INTERP_PRINT_ELEM(R, DATA, I, ELEM) \
@@ -30,16 +31,16 @@ struct dimension<X> {								        \
                                                             \
 template<>													\
 struct precision<X> {									    \
-	typedef P type;											\
+	using type = P;											\
 };															\
 }                                                           \
                                                             \
 template<>													\
 struct make_row<X> {									    \
 public:														\
-	inline static typename traits::row<X>::type			    \
+	inline static typename traits::value<X>::type			\
 	apply(const X& d) {								        \
-	    typename traits::row<X>::type r;					\
+	    typename traits::value<X>::type r;					\
 	    INTERP_FOR_EACH_DIM(SEQ)							\
 	    return r;											\
 	}														\

@@ -12,9 +12,11 @@ namespace optimization  {
 	// current state of an optimization problem
 	template<typename Problem, template<class> class ... Mixins>
     class state : public meta::curiousMixin<state<Problem, Mixins...>, Mixins...>{
+        using value_type = typename traits::value<Problem>::type;
+
     public:
         real m_f;
-        typename traits::value<Problem>::type m_x;
+        value_type m_x;
     };
 }}
 

@@ -5,8 +5,8 @@
 #include <smoothy/definitions.h>
 #include <smoothy/optimization/criterion.h>
 #include <smoothy/meta/patterns/curiouslyrecurring.h>
+#include <smoothy/traits/fwd/point.h>
 #include <smoothy/traits/fwd/value.h>
-#include <smoothy/traits/fwd/row.h>
 
 namespace smoothy       {
 namespace optimization  {
@@ -18,9 +18,9 @@ namespace lineSearches  {
 	>
 	class stride : public meta::curiouslyRecurring<Child<Problem> > {
 
-        using child = meta::curiouslyRecurring<Child<Problem>>;
-        using value_type = typename traits::value<Problem>::type;
-        using array_type = typename traits::row<value_type>::type;
+        using child         = meta::curiouslyRecurring<Child<Problem>>;
+        using point_type    = typename traits::point<Problem>::type;
+        using value_type    = typename traits::value<point_type>::type;
 
 	public:
 		stride(
@@ -30,8 +30,6 @@ namespace lineSearches  {
 			, m_eps(eps) {}
 
 		real eps() { return m_eps; }
-		//state& current() { return m_state; }
-		//void current(state const& value) { m_state = value; }
 
 		criteria::type operator()(
 			  Problem& p
@@ -40,15 +38,20 @@ namespace lineSearches  {
 		}
 
 	protected:
+        // TODO: reuse problem/state class
         struct state {
-            array_type m_direction;
-            array_type m_x;
-        };
+            value_type m_direction;
+            value_type m_x;
+        } m_state;
+
+    protected:
+        state& current() { return m_state; }
+        void current(state const& value) { m_state = value; }
 
         criteria::type try_update(							// here we are only testing whether the
 			real& value/*, Constraint constraint*/ ) {		// stored step will violate the constraints
 
-			array_type pos = m_state.m_x + value * m_state.m_direction;
+			value_type pos = m_state.m_x + value * m_state.m_direction;
             criteria::type result = criteria::type::none;
 			/*result = constraint.test(new_params);*/
 
@@ -67,8 +70,6 @@ namespace lineSearches  {
 		}
 
 	protected:
-		state m_state;
-		//typename Problem::state_type m_state;
 		size m_maxUpdate;					// max attempts to update the step
 		real m_eps;							// tol
 	};

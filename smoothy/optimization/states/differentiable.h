@@ -4,7 +4,7 @@
 
 #include <smoothy/definitions.h>
 
-#include <smoothy/traits/fwd/value.h>
+#include <smoothy/traits/fwd/point.h>
 #include <smoothy/traits/fwd/problem.h>
 
 namespace smoothy       {

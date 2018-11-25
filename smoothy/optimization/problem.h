@@ -15,41 +15,41 @@ namespace optimization  {
     template<
           template <class> class Func
         , class Criteria
-        , class Val
+        , class Point
         , template<class> class ... Traits
     >
     class problem {
-        using value_type    = Val;
-        using function_type = Func<Val>;
+        using point_type    = Point;
+        using function_type = Func<Point>;
         using criteria_type = Criteria;
-        using problem_type  = problem<Func, Criteria, Val>;
+        using problem_type  = problem<Func, Criteria, Point>;
         using state_type    = state<problem_type, Traits...>;
 
     public:
-        problem(const Func<Val>&    func
+        problem(const Func<Point>&  func
               , const Criteria&     criteria
-              , const Val&          guess   );
+              , const Point&        guess   );
 
         criteria_type&	criteria()  { return m_criteria;    }
-        Func<Val>&		function()  { return m_func;        }
+        Func<Point>&	function()  { return m_func;        }
         state_type&		current ()  { return m_state;       }
 
     private:
         state_type		m_state     ;
         criteria_type	m_criteria  ;
-        Func<Val>		m_func      ;
+        Func<Point>		m_func      ;
     };
 
     template<
         template <class> class Func
         , class Criteria
-        , class Val
+        , class Point
         , template<class> class ... Traits
     >
-    inline problem<Func, Criteria, Val, Traits ...>::problem(
-          const Func<Val>& func
+    inline problem<Func, Criteria, Point, Traits ...>::problem(
+          const Func<Point>& func
         , const Criteria& criteria
-        , const Val& guess)
+        , const Point& guess)
         : m_state()
         , m_criteria(criteria)
         , m_func(func) {}
