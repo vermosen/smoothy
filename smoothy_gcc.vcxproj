@@ -81,7 +81,9 @@
     <ClInclude Include="smoothy\optimization\state.h" />
     <ClInclude Include="smoothy\optimization\states\differentiable.h" />
     <ClInclude Include="smoothy\optimization\states\iterable.h" />
+    <ClInclude Include="smoothy\traits\fwd\gradient.h" />
     <ClInclude Include="smoothy\traits\fwd\problem.h" />
+    <ClInclude Include="smoothy\traits\gradient.h" />
     <ClInclude Include="smoothy\traits\problem.h" />
     <ClInclude Include="smoothy\traits\point.h" />
     <ClInclude Include="smoothy\traits\fwd\point.h" />

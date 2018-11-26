@@ -58,16 +58,16 @@ namespace strides       {
 			current.m_direction);
 
 		res = base::try_update(t/*, constraint*/);		// bondary check !!! this is computing a new m_x
-			
+
 		if (res != criteria::type::none)
 			return res;
-			
+
 		real f = (p.function())(current.m_x);		// initial value
 
 		if ((f - f0) > -t * m_alpha * norm) {
 			do {
 				iter++;
-				t *= m_beta;							    // decrease step 
+				t *= m_beta;							    // decrease step
 				qtold = f;								    // store old value of the function
 				current.m_x = p.current().m_x;			    // back to the initial position
 				res = base::try_update(t/*, constraint*/);	// bondary check with new t + update x

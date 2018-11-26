@@ -5,8 +5,10 @@
 #include <smoothy/definitions.h>
 #include <smoothy/optimization/criterion.h>
 #include <smoothy/meta/patterns/curiouslyrecurring.h>
+
 #include <smoothy/traits/fwd/point.h>
 #include <smoothy/traits/fwd/value.h>
+#include <smoothy/traits/fwd/gradient.h>
 
 namespace smoothy       {
 namespace optimization  {
@@ -18,9 +20,10 @@ namespace lineSearches  {
 	>
 	class stride : public meta::curiouslyRecurring<Child<Problem> > {
 
-        using child         = meta::curiouslyRecurring<Child<Problem>>;
-        using point_type    = typename traits::point<Problem>::type;
-        using value_type    = typename traits::value<point_type>::type;
+        using child         = meta::curiouslyRecurring<Child<Problem>>  ;
+        using point_type    = typename traits::point<Problem>::type     ;
+        using value_type    = typename traits::value<Problem>::type     ;
+        using gradient_type = typename traits::gradient<Problem>::type  ;
 
 	public:
 		stride(
@@ -37,11 +40,13 @@ namespace lineSearches  {
 			return child::impl().computeImpl(p, stride);
 		}
 
+        void direction(gradient_type& direction) { m_state.m_direction = direction; }
+
 	protected:
         // TODO: reuse problem/state class
         struct state {
-            value_type m_direction;
-            value_type m_x;
+            gradient_type   m_direction ;
+            value_type      m_x         ;
         } m_state;
 
     protected:

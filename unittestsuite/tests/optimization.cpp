@@ -3,6 +3,10 @@
 
 #include <smoothy/definitions.h>
 
+#include <smoothy/traits/problem.h>
+#include <smoothy/traits/point.h>
+#include <smoothy/traits/gradient.h>
+
 #include <smoothy/optimization/gauge.h>
 #include <smoothy/optimization/problem.h>
 #include <smoothy/optimization/state.h>
@@ -11,9 +15,6 @@
 #include <smoothy/optimization/criteria/maxiteration.h>
 #include <smoothy/optimization/states/iterable.h>
 #include <smoothy/optimization/states/differentiable.h>
-
-#include <smoothy/traits/problem.h>
-#include <smoothy/traits/point.h>
 
 #include <smoothy/optimization/methods/linesearches/strides/armijogoldstein.h>
 
