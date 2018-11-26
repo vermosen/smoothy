@@ -3,10 +3,9 @@
 #
 cmake_minimum_required (VERSION 3.12)
 
-# set debug target
-if (CMAKE_CONF MATCHES "Debug")
-	set(CMAKE_BUILD_TYPE Debug)
-endif (CMAKE_CONF MATCHES "Debug")
+if (CMAKE_BUILD_TYPE STREQUAL "debugasm")
+	enable_language(ASM)
+endif()
 
 find_library(LIB_SMOOTHY NAMES smoothy)
 
@@ -30,3 +29,15 @@ target_include_directories(smoothytest_${CMAKE_CONF} INTERFACE
 )
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+# gcc flags
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+	target_compile_options(smoothytest_${CMAKE_CONF} INTERFACE -O0 -ggdb3 -DDEBUG)
+elseif (CMAKE_BUILD_TYPE STREQUAL "DebugAsm")
+	set_target_properties(smoothytest_${CMAKE_CONF} PROPERTIES COMPILE_FLAGS -save-temps)
+	target_compile_options(smoothytest_${CMAKE_CONF} INTERFACE -O3 -DNDEBUG -flto -DDEBUG_ASM -S -masm=intel)
+elseif (CMAKE_BUILD_TYPE STREQUAL "Profiling")
+	target_compile_options(smoothytest_${CMAKE_CONF} INTERFACE -O3 -DNDEBUG -flto)
+else (CMAKE_BUILD_TYPE STREQUAL "Release")
+	target_compile_options(smoothytest_${CMAKE_CONF} INTERFACE -O3 -DNDEBUG -flto)
+endif()

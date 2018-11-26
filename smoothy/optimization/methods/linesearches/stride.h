@@ -12,7 +12,6 @@
 
 namespace smoothy       {
 namespace optimization  {
-namespace lineSearches  {
 
 	template<
           template <class> class Child
@@ -78,6 +77,6 @@ namespace lineSearches  {
 		size m_maxUpdate;					// max attempts to update the step
 		real m_eps;							// tol
 	};
-}}}
+}}
 
 #endif // SMOOTHY_OPTIMIZATION_METHODS_LINESEARCHES_STRIDE_H

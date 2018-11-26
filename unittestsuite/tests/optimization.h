@@ -25,6 +25,7 @@ namespace testSuite {
         static void set_criteria();
         static void set_problem();
         static void armijogoldstein_stride();
+        static void steepest_descent();
 
 		static boost::unit_test_framework::test_suite* suite();
 	};

@@ -9,6 +9,11 @@
 namespace smoothy   {
 namespace traits    {
 
+    template<typename Point>
+    struct gradient {
+        using type = typename value<Point>::type;
+    };
+
     template<
           template <class> class Func
         , class Criteria
@@ -16,7 +21,7 @@ namespace traits    {
         , template<class> class ... Traits
     >
     struct gradient<smoothy::optimization::problem<Func, Criteria, Point, Traits...>> {
-        using type = typename value<Point>::type;           // question: do we have a case when this is not automatic ?
+        using type = typename value<Point>::type;           // question: do we have a case when this is not true ?
     };
 }}
 

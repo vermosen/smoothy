@@ -14,9 +14,16 @@ if (NOT CMAKE_BUILD_TYPE)
 endif()
 
 string(TOLOWER "${CMAKE_BUILD_TYPE}" cmake_build_type_tolower)
-if(    NOT cmake_build_type_tolower STREQUAL "debug"
-   AND NOT cmake_build_type_tolower STREQUAL "release")
-   message(FATAL_ERROR "Unknown build type \"${CMAKE_BUILD_TYPE}\". Allowed values are Debug, Release (case-insensitive).")
+if (cmake_build_type_tolower STREQUAL "debug")
+	set(CMAKE_BUILD_TYPE Debug)
+elseif (cmake_build_type_tolower STREQUAL "release")
+	set(CMAKE_BUILD_TYPE Release)
+elseif (cmake_build_type_tolower STREQUAL "profiling")
+	set(CMAKE_BUILD_TYPE Profiling)
+elseif (cmake_build_type_tolower STREQUAL "debugasm")
+	set(CMAKE_BUILD_TYPE DebugAsm)
+else ()
+	message(FATAL_ERROR "Unknown build type \"${CMAKE_BUILD_TYPE}\". Allowed values are Debug, DebugAsm, Release, Profiling.")
 endif()
 
 set(CMAKEPACKAGE_INSTALL_DIR
@@ -32,8 +39,6 @@ include(CheckCXXCompilerFlag)
 # general configuration
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# dependencies
 
 # find boost
 find_package(Boost)
