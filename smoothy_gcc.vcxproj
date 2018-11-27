@@ -74,6 +74,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
+    <LocalRemoteCopySources>false</LocalRemoteCopySources>
   </PropertyGroup>
   <ItemGroup>
     <Text Include="cmake\smoothy.cmake" />
@@ -84,6 +85,7 @@
   <ItemGroup>
     <ClInclude Include="smoothy\definitions.h" />
     <ClInclude Include="smoothy\meta\asm\comment.h" />
+    <ClInclude Include="smoothy\meta\asm\clock.h" />
     <ClInclude Include="smoothy\meta\patterns\curiouslyrecurring.h" />
     <ClInclude Include="smoothy\meta\patterns\curiousmixin.h" />
     <ClInclude Include="smoothy\meta\patterns\fwd\curiouslyrecurring.h" />
@@ -187,6 +189,9 @@
         set %~1=%~3
         goto:EOF</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>$(R_DEFAULT_PREBUILD)</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

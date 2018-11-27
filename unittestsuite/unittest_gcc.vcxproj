@@ -91,6 +91,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEventUseInBuild>false</PreBuildEventUseInBuild>
     <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
+    <LocalRemoteCopySources>false</LocalRemoteCopySources>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

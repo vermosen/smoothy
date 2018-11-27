@@ -10,20 +10,6 @@
 #define NASM_COMMENT(X) __asm__(CAT("#", #X));
 #endif
 
-//#ifdef __GNUC__
-//#ifdef DEBUG_ASM
-//#define NASM_COMMENT(X) asm(CAT("#", #X) : : );
-//#else
-//#define NASM_COMMENT(X)
-//#endif
-//#else
-//#ifdef DEBUG_ASM
-//#define NASM_COMMENT(X) __asm__(CAT("#", #X));
-//#else
-//#define NASM_COMMENT(X)
-//#endif
-//#endif
-
 #define NASM_STATEMENT(X)           \
     NASM_COMMENT("START " #X)       \
     X;                              \
