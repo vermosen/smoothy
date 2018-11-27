@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <smoothy/definitions.h>
 #include <smoothy/meta/patterns/curiousmixin.h>
+#include <smoothy/meta/asm/clock.h>
 
 namespace smoothy   {
 namespace testSuite {
@@ -45,7 +46,7 @@ namespace testSuite {
         mixin m2(1, 2.0);   // other ctor
     }
 
-    std::uint64_t fibo(unsigned t) {
+    inline std::uint64_t fibo(unsigned t) {
 
         if (t < 2) {
             return 1;
@@ -68,30 +69,21 @@ namespace testSuite {
 
     void meta::clockmeasurement()
     {
-        // see https://www.intel.com/content/dam/www/public/us/en/documents/white-papers/ia-32-ia-64-benchmark-code-execution-paper.pdf
-        unsigned cycles_low, cycles_high, cycles_low1, cycles_high1;
+        using namespace ::smoothy::meta;
 
-        asm volatile (
-            "CPUID\n\t"
-            "RDTSC\n\t"
-            "mov %%edx, %0\n\t"
-            "mov %%eax, %1\n\t": "=r" (cycles_high), "=r" (cycles_low)::
-            "%rax", "%rbx", "%rcx", "%rdx");
+        cpuid();
+        cpuid();
+        cpuid();
 
-        auto res = fibo(70);
+        auto clock = timestamp<details::order::pre>();
 
-        asm volatile(
-            "RDTSCP\n\t"
-            "mov %%edx, %0\n\t"
-            "mov %%eax, %1\n\t"
-            "CPUID\n\t": "=r" (cycles_high1), "=r" (cycles_low1)::
-            "%rax", "%rbx", "%rcx", "%rdx");
+        auto res = fibo(100);
+
+        clock = timestamp<details::order::post>() - clock;
 
         std::stringstream sss;
         sss << "result: " << res << std::endl
-            << "pre: (" << cycles_high << ", " << cycles_low << "), "
-            << "post: (" << cycles_high1 << ", " << cycles_low1 << ")"
-            << std::endl;
+            << "duration: " << clock << " ticks" << std::endl;
 
         BOOST_TEST_MESSAGE(sss.str());
     }

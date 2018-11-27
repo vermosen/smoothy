@@ -62,14 +62,14 @@ namespace strides       {
 		real norm = current.m_direction.dot(
 			current.m_direction);
 
-		res = base::try_update(t/*, constraint*/);		// bondary check !!! this is computing a new m_x
+		res = base::try_update(t/*, constraint*/);                  // bondary check !!! this is computing a new m_x
 
 		if (res != criteria::type::none)
 			return res;
 
-		real f = (p.function())(current.m_x);		// initial value
+		real f = (p.function())(current.m_x);		                // initial value
 
-        NASM_COMMENT("start Armijo-Goldstein outer loop");
+        NASM_COMMENT("start Armijo-Goldstein outer loop abcdef");
 		if ((f - f0) > -t * m_alpha * norm) {
 			do {
                 NASM_COMMENT("start Armijo-Goldstein inner loop");
