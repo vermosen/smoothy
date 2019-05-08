@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 3.12)
+
+IF(CMAKE_PROFILE)
+	STRING(TOUPPER ${CMAKE_PROFILE} CMAKE_PROFILE_UC)
+	MESSAGE(STATUS "CMake profile has been set to ${CMAKE_PROFILE_UC}")
+ELSE()
+	# default configuration -> gcc7
+	SET(CMAKE_PROFILE_UC "GCC7")
+	MESSAGE(STATUS "defaulting CMake profile to ${CMAKE_PROFILE_UC}")
+ENDIF()
+
+IF(CMAKE_PROFILE_UC STREQUAL "GCC7")
+	MESSAGE(STATUS "detected gcc 7 profile")
+	SET(CMAKE_C_COMPILER	"/opt/rh/devtoolset-7/root/bin/gcc"			CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CXX_COMPILER	"/opt/rh/devtoolset-7/root/bin/g++"			CACHE INTERNAL "" FORCE)
+	SET(CMAKE_LINKER		"/opt/rh/devtoolset-7/root/bin/ld.gold"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CONAN			"/home/jvermosen/anaconda3/bin/conan"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_GENERATOR		"Unix Makefiles"							CACHE INTERNAL "" FORCE)
+ELSEIF(CMAKE_PROFILE_UC STREQUAL "CLANG5")
+	MESSAGE(STATUS "detected clang 5 profile")
+	SET(CMAKE_C_COMPILER	"/opt/rh/llvm-toolset-7/root/bin/clang"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CXX_COMPILER	"/opt/rh/llvm-toolset-7/root/bin/clang++"	CACHE INTERNAL "" FORCE)
+	SET(CMAKE_LINKER		"/opt/rh/devtoolset-7/root/bin/ld.gold"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CONAN			"/home/jvermosen/anaconda3/bin/conan"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_GENERATOR		"Unix Makefiles"							CACHE INTERNAL "" FORCE)
+ELSE()
+	MESSAGE(FATAL_ERROR "Unknown configuration passed. Aborting...")
+ENDIF()
+
+IF(CMAKE_CONF)
+	STRING(TOUPPER ${CMAKE_CONF} CMAKE_CONF_UC)
+	MESSAGE(STATUS "CMake build type has been set to ${CMAKE_CONF_UC}")
+ELSE()
+	SET(CMAKE_CONF_UC "RELEASE")
+	MESSAGE(STATUS "defaulting CMake build type to ${CMAKE_CONF_UC}")
+ENDIF()
+
+IF(CMAKE_CONF_UC STREQUAL "RELEASE")
+	MESSAGE(STATUS "cmake build type set to \"Release\"")
+	SET(CMAKE_BUILD_TYPE "Release" CACHE INTERNAL "" FORCE)
+ELSEIF(CMAKE_CONF_UC STREQUAL "DEBUG")
+	MESSAGE(STATUS "cmake build type set to \"Debug\"")
+	SET(CMAKE_BUILD_TYPE "Release" CACHE INTERNAL "" FORCE)
+ELSE()
+	MESSAGE(FATAL_ERROR "Unknown configuration passed. Aborting...")
+ENDIF
+
+
