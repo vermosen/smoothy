@@ -84,7 +84,6 @@ namespace testSuite {
 
         rosenbrock<point2d>::value_type gradient = rosenbrock<point2d>::value_type::Zero();
         rosenbrock<point2d>::value_type m_x = rosenbrock<point2d>::value_type::Zero();
-
         {
             m_x(0, 0) = 0.5; m_x(1, 0) = 0.5;
             auto res1 = func(m_x);
