@@ -14,37 +14,37 @@
 #include <smoothy/traits/fwd/precision.h>
 #include <smoothy/utils/fwd/make_row.h>
 
-#define INTERP_PRINT_ELEM(R, DATA, I, ELEM)                 \
+#define INTERP_PRINT_ELEM(R, DATA, I, ELEM) \
 	r(0, I) = d.ELEM;
 
-#define INTERP_FOR_EACH_DIM(SEQ)                            \
+#define INTERP_FOR_EACH_DIM(SEQ) \
     BOOST_PP_SEQ_FOR_EACH_I(INTERP_PRINT_ELEM, ~, SEQ)
 
-#define SMOOTHY_DATA_ADAPTER_IMPL(X, P, SEQ)				        \
-namespace smoothy {											                    \
-namespace traits  {											                    \
+#define SMOOTHY_DATA_ADAPTER_IMPL(X, P, SEQ)				\
+namespace smoothy {											\
+namespace traits  {											\
                                                             \
-template <>													                        \
-struct dimension<X> {								                        \
-	static constexpr size value = BOOST_PP_SEQ_SIZE(SEQ);	    \
+template <>													\
+struct dimension<X> {								        \
+	static constexpr size value = BOOST_PP_SEQ_SIZE(SEQ);	\
 };                                                          \
                                                             \
-template<>													                        \
-struct precision<X> {									                      \
-	using type = P;											                      \
-};															                            \
+template<>													\
+struct precision<X> {									    \
+	using type = P;											\
+};															\
 }                                                           \
                                                             \
-template<>													                        \
-struct make_row<X> {									                      \
-public:														                          \
-	inline static typename traits::value<X>::type			        \
-	apply(const X& d) {								                        \
-	    typename traits::value<X>::type r;					          \
-	    INTERP_FOR_EACH_DIM(SEQ)							                \
-	    return r;											                        \
-	}														                              \
-};															                            \
+template<>													\
+struct make_row<X> {									    \
+public:														\
+	inline static typename traits::value<X>::type			\
+	apply(const X& d) {								        \
+	    typename traits::value<X>::type r;					\
+	    INTERP_FOR_EACH_DIM(SEQ)							\
+	    return r;											\
+	}														\
+};															\
 }
 
 #define SMOOTHY_DATA_ADAPTER(X, P, ...) \

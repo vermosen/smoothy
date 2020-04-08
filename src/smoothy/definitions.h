@@ -7,19 +7,19 @@
 namespace smoothy   {
 
 	// real type
-	typedef double real;
+	using real = double;
 
 	// natural type
-	typedef unsigned int natural;
+    using natural = unsigned int;
 
 	// integer type
-	typedef int integer;
+    using integer = int;
 
 	// size type
-	typedef std::size_t size;
+    using size = std::size_t;
 
 	// size type
-	typedef std::complex<real> complex;
+    using complex = std::complex<real>;
 }
 
 #endif

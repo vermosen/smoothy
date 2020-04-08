@@ -5,7 +5,7 @@
 namespace smoothy   {
 namespace traits    {
 
-	template<typename Point>
+	template<typename>
     struct precision;
 }}
 

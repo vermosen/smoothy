@@ -17,7 +17,7 @@ namespace traits    {
     struct value {
         using type = Eigen::Matrix <
               typename traits::precision<Point>::type
-            , 1, traits::dimension<Point>::value
+            , traits::dimension<Point>::value, 1
         >;
     };
 
@@ -30,7 +30,7 @@ namespace traits    {
     struct value<optimization::problem<Func, Criteria, Point, Traits...>> {
         using type = Eigen::Matrix <
             typename traits::precision<Point>::type
-            , 1, traits::dimension<Point>::value
+            , traits::dimension<Point>::value, 1
         >;
     };
 }}
