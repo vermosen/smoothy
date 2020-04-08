@@ -10,12 +10,12 @@ namespace optimization  {
 namespace states        {
 
 	template<typename Mixin>
-    class iterable {
-        using problem_type = typename traits::problem<Mixin>::type;
-    public:
-        size m_iterations;
-        size m_stationaryStates;
-    };
+  class iterable {
+    using problem_type = typename traits::problem<Mixin>::type;
+  public:
+    size m_iterations;
+    size m_stationaryStates;
+  };
 }}}
 
 #endif // SMOOTHY_OPTIMIZATION_STATES_DIFFERENTIABLE_H

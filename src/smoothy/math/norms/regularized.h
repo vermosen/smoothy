@@ -8,23 +8,25 @@
 #include <smoothy/traits/fwd/value.h>
 #include <smoothy/math/norm.h>
 
-namespace smoothy   {
-namespace math      {
+namespace smoothy {
+namespace math    {
 
-    template <typename Val>
-    class norm<Val, norms::type::regularized> : public norms::base<norm<Val, norms::type::regularized>> {
+  template <typename Val>
+  class norm<Val, norms::type::regularized> : public norms::base<norm<Val, norms::type::regularized>> {
+  private:
+    using ancestor = norms::base<norm<Val, norms::type::regularized>>;
 
-        using ancestor = norms::base<norm<Val, norms::type::regularized>>;
-        using typename precision_type = traits::precision<Val>::type;
-        using typename value_type = traits::value<Val>::type;
-        static_assert(traits::dimension<Val>::value == 1);
+  public:
+    using typename precision_type = traits::precision<Val>::type;
+    using typename value_type = traits::value<Val>::type;
+    static_assert(traits::dimension<Val>::value == 1);
 
-    public:
-        static inline precision_type applyImpl(value_type vnew, value_type vold) {
-            return 2.0 * (fnew - fold).abs() /
-                (fnew.abs() + fold.abs() + std::numeric_limits<precision_type>::epsilon());
-        }
-    };
+  public:
+    static precision_type apply_impl(value_type vnew, value_type vold) {
+      return 2.0 * (fnew - fold).abs() /
+        (fnew.abs() + fold.abs() + std::numeric_limits<precision_type>::epsilon());
+    }
+  };
 }}
 
 #endif

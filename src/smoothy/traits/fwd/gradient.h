@@ -6,7 +6,7 @@ namespace smoothy   {
 namespace traits    {
 
 	template<typename>
-    struct gradient;
+  struct gradient;
 }}
 
 #endif

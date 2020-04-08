@@ -4,22 +4,22 @@
 
 #include <complex>
 
-namespace smoothy   {
+namespace smoothy {
 
 	// real type
 	using real = double;
 
 	// natural type
-    using natural = unsigned int;
+  using natural = unsigned int;
 
 	// integer type
-    using integer = int;
+  using integer = int;
 
 	// size type
-    using size = std::size_t;
+  using size = std::size_t;
 
 	// size type
-    using complex = std::complex<real>;
+  using complex = std::complex<real>;
 }
 
 #endif

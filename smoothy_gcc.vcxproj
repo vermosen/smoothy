@@ -56,10 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\smoothy\definitions.h" />
+    <ClInclude Include="src\smoothy\meta\asm\clock.h" />
     <ClInclude Include="src\smoothy\meta\asm\comment.h" />
-    <ClInclude Include="src\smoothy\meta\patterns\curiouslyrecurring.h" />
     <ClInclude Include="src\smoothy\meta\patterns\curiousmixin.h" />
-    <ClInclude Include="src\smoothy\meta\patterns\fwd\curiouslyrecurring.h" />
     <ClInclude Include="src\smoothy\meta\patterns\fwd\curiousmixin.h" />
     <ClInclude Include="src\smoothy\meta\patterns\visitor.h" />
     <ClInclude Include="src\smoothy\meta\preprocessor\cat.h" />
@@ -93,8 +92,6 @@
     <ClInclude Include="src\smoothy\traits\fwd\precision.h" />
     <ClInclude Include="src\smoothy\traits\fwd\value.h" />
     <ClInclude Include="src\smoothy\traits\value.h" />
-    <ClInclude Include="src\smoothy\utils\adapter.h" />
-    <ClInclude Include="src\smoothy\utils\fwd\make_row.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
