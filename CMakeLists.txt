@@ -78,7 +78,7 @@ add_subdirectory(src/smoothy)
 #####################################
 
 add_subdirectory(sample)
-add_subdirectory(unittestsuite)
+add_subdirectory(tests/unittestsuite)
 
 #####################################
 # add the test suite to the project #

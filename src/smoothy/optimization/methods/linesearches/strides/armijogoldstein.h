@@ -69,17 +69,17 @@ namespace strides       {
 
 		real f = (p.function())(current.m_x);		                // initial value
 
-        NASM_COMMENT("start Armijo-Goldstein outer loop abcdef");
+    NASM_COMMENT("start Armijo-Goldstein outer loop");
 		if ((f - f0) > -t * m_alpha * norm) {
 			do {
-                NASM_COMMENT("start Armijo-Goldstein inner loop");
+        NASM_COMMENT("start Armijo-Goldstein inner loop");
 				iter++;
-				t *= m_beta;							            // decrease step
-				qtold = f;								            // store old value of the function
+				t *= m_beta;							                      // decrease step
+				qtold = f;								                      // store old value of the function
 				current.m_x = p.current().m_x;			            // back to the initial position
-				res = base::try_update(t/*, constraint*/);	        // bondary check with new t + update x
+				res = base::try_update(t/*, constraint*/);	    // bondary check with new t + update x
 				f = (p.function())(current.m_x);		            // compute f at the new point
-                NASM_COMMENT("end Armijo-Goldstein inner loop");
+        NASM_COMMENT("end Armijo-Goldstein inner loop");
 			} while (
 				   (((f - f0) > (-m_alpha * t * norm))
 				|| ((qtold - f0) <= (-m_alpha * t * norm / m_beta)))
@@ -87,7 +87,7 @@ namespace strides       {
 				&& (iter < base::m_maxUpdate)
 			);
 		}
-        NASM_COMMENT("end Armijo-Goldstein outer loop");
+    NASM_COMMENT("end Armijo-Goldstein outer loop");
 
 		value = t;
 

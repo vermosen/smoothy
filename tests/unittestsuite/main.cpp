@@ -1,4 +1,4 @@
-#include <boost/test/included/unit_test_framework.hpp>
+#include <boost/test/included/unit_test.hpp>
 
 #include "tests/optimization.h"
 #include "tests/meta.h"

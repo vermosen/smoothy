@@ -14,15 +14,15 @@ namespace smoothy       {
 namespace optimization  {
 
 	template<
-          template <class> class Child
-        , class Problem
+      template <class> class Ancestor
+    , class Problem
 	>
-	class stride : public meta::curiouslyRecurring<Child<Problem> > {
+	class stride : public meta::curiouslyRecurring<Ancestor<Problem> > {
 
-        using child         = meta::curiouslyRecurring<Child<Problem>>  ;
-        using point_type    = typename traits::point<Problem>::type     ;
-        using value_type    = typename traits::value<Problem>::type     ;
-        using gradient_type = typename traits::gradient<Problem>::type  ;
+        using ancestor_type = meta::curiouslyRecurring<Ancestor<Problem>>;
+        using point_type    = typename traits::point<Problem>::type      ;
+        using value_type    = typename traits::value<Problem>::type      ;
+        using gradient_type = typename traits::gradient<Problem>::type   ;
 
 	public:
 		stride(
@@ -36,7 +36,7 @@ namespace optimization  {
 		criteria::type operator()(
 			  Problem& p
 			, real& stride) {
-			return child::impl().computeImpl(p, stride);
+			return ancestor_type::impl().computeImpl(p, stride);
 		}
 
         void direction(gradient_type& direction) { m_state.m_direction = direction; }

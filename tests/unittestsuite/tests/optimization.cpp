@@ -156,7 +156,7 @@ namespace testSuite {
             , states::differentiable
         >;
 
-        using stride_type = lineSearches::strides::armijoGoldstein<problem_type>;
+        using stride_type = opt::strides::armijoGoldstein<problem_type>;
 
         rosenbrock<point2d> func(1.0, 1.0);
         criteria_type c({ 1e-8 }, { 1000 });

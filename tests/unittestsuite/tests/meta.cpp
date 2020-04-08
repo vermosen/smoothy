@@ -1,7 +1,8 @@
-#include <tests/meta.h>
-#include <definitions.h>
+#include "tests/meta.h"
+#include "../definitions.h"
 
 #include <cstdint>
+
 #include <smoothy/definitions.h>
 #include <smoothy/meta/patterns/curiousmixin.h>
 #include <smoothy/meta/asm/clock.h>

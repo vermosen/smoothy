@@ -40,12 +40,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
-    <NMakeIncludeSearchPath>.;$(RUBEDO_BOOST_EX);$(R_INCLUDE_ROOT)\eigen;$(R_INCLUDE_ROOT)\mkl</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.5\rubedo\stable\package\550b30b306f044e6ed33982393e219e79a832f0d\include;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <LocalRemoteCopySources>false</LocalRemoteCopySources>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
+    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.5\rubedo\stable\package\550b30b306f044e6ed33982393e219e79a832f0d\include;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <ItemGroup>
     <Text Include="cmake\CMakeLists.txt" />
@@ -74,6 +75,7 @@
     <ClInclude Include="src\smoothy\optimization\gauge.h" />
     <ClInclude Include="src\smoothy\optimization\methods\linesearch.h" />
     <ClInclude Include="src\smoothy\optimization\methods\linesearches\bfgs.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearches\newton.h" />
     <ClInclude Include="src\smoothy\optimization\methods\linesearches\steepestdescent.h" />
     <ClInclude Include="src\smoothy\optimization\methods\linesearches\stride.h" />
     <ClInclude Include="src\smoothy\optimization\methods\linesearches\strides\armijogoldstein.h" />
@@ -81,7 +83,9 @@
     <ClInclude Include="src\smoothy\optimization\state.h" />
     <ClInclude Include="src\smoothy\optimization\states\differentiable.h" />
     <ClInclude Include="src\smoothy\optimization\states\iterable.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\gradient.h" />
     <ClInclude Include="src\smoothy\traits\fwd\problem.h" />
+    <ClInclude Include="src\smoothy\traits\gradient.h" />
     <ClInclude Include="src\smoothy\traits\problem.h" />
     <ClInclude Include="src\smoothy\traits\point.h" />
     <ClInclude Include="src\smoothy\traits\fwd\point.h" />

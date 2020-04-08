@@ -5,8 +5,8 @@
 namespace smoothy   {
 namespace traits    {
 
-    template<typename>
-    struct value;
+  template<typename>
+  struct value;
 }}
 
 #endif
