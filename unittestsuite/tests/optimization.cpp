@@ -1,5 +1,6 @@
-#include <tests/optimization.h>
-#include <definitions.h>
+#include "optimization.h"
+
+#include "../definitions.h"
 
 #include <smoothy/definitions.h>
 

@@ -1,7 +1,7 @@
 #include <boost/test/included/unit_test_framework.hpp>
 
-#include <tests/optimization.h>
-#include <tests/meta.h>
+#include "tests/optimization.h"
+#include "tests/meta.h"
 
 boost::unit_test_framework::test_suite* init_unit_test_suite(int, char*[]) {
 

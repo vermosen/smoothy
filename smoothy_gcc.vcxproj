@@ -34,7 +34,7 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets">
-    <Import Project="..\utils\visualstudio\propertySheet_cmake.props" />
+    <Import Project="$(GIT_ROOT)\utils\visualstudio\cmake.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -48,53 +48,55 @@
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
   </PropertyGroup>
   <ItemGroup>
-    <Text Include="cmake\smoothy.cmake" />
+    <Text Include="cmake\CMakeLists.txt" />
     <Text Include="sample\CMakeLists.txt" />
-    <Text Include="smoothy\CMakeLists.txt" />
+    <Text Include="src\smoothy\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="smoothy\definitions.h" />
-    <ClInclude Include="smoothy\meta\asm\comment.h" />
-    <ClInclude Include="smoothy\meta\patterns\curiouslyrecurring.h" />
-    <ClInclude Include="smoothy\meta\patterns\curiousmixin.h" />
-    <ClInclude Include="smoothy\meta\patterns\fwd\curiouslyrecurring.h" />
-    <ClInclude Include="smoothy\meta\patterns\fwd\curiousmixin.h" />
-    <ClInclude Include="smoothy\meta\patterns\visitor.h" />
-    <ClInclude Include="smoothy\meta\preprocessor\cat.h" />
-    <ClInclude Include="smoothy\optimization\costfunction.h" />
-    <ClInclude Include="smoothy\optimization\criteria\functiontolerance.h" />
-    <ClInclude Include="smoothy\optimization\criteria\maxiteration.h" />
-    <ClInclude Include="smoothy\math\norm.h" />
-    <ClInclude Include="smoothy\math\norms\details\base.h" />
-    <ClInclude Include="smoothy\math\norms\l1.h" />
-    <ClInclude Include="smoothy\math\norms\l2.h" />
-    <ClInclude Include="smoothy\math\norms\regularized.h" />
-    <ClInclude Include="smoothy\optimization\criterion.h" />
-    <ClInclude Include="smoothy\optimization\gauge.h" />
-    <ClInclude Include="smoothy\optimization\methods\linesearch.h" />
-    <ClInclude Include="smoothy\optimization\methods\linesearches\bfgs.h" />
-    <ClInclude Include="smoothy\optimization\methods\linesearches\steepestdescent.h" />
-    <ClInclude Include="smoothy\optimization\methods\linesearches\stride.h" />
-    <ClInclude Include="smoothy\optimization\methods\linesearches\strides\armijogoldstein.h" />
-    <ClInclude Include="smoothy\optimization\problem.h" />
-    <ClInclude Include="smoothy\optimization\state.h" />
-    <ClInclude Include="smoothy\optimization\states\differentiable.h" />
-    <ClInclude Include="smoothy\optimization\states\iterable.h" />
-    <ClInclude Include="smoothy\traits\fwd\problem.h" />
-    <ClInclude Include="smoothy\traits\problem.h" />
-    <ClInclude Include="smoothy\traits\point.h" />
-    <ClInclude Include="smoothy\traits\fwd\point.h" />
-    <ClInclude Include="smoothy\traits\fwd\dimension.h" />
-    <ClInclude Include="smoothy\traits\fwd\precision.h" />
-    <ClInclude Include="smoothy\traits\fwd\value.h" />
-    <ClInclude Include="smoothy\traits\value.h" />
-    <ClInclude Include="smoothy\utils\adapter.h" />
-    <ClInclude Include="smoothy\utils\fwd\make_row.h" />
+    <ClInclude Include="src\smoothy\definitions.h" />
+    <ClInclude Include="src\smoothy\meta\asm\comment.h" />
+    <ClInclude Include="src\smoothy\meta\patterns\curiouslyrecurring.h" />
+    <ClInclude Include="src\smoothy\meta\patterns\curiousmixin.h" />
+    <ClInclude Include="src\smoothy\meta\patterns\fwd\curiouslyrecurring.h" />
+    <ClInclude Include="src\smoothy\meta\patterns\fwd\curiousmixin.h" />
+    <ClInclude Include="src\smoothy\meta\patterns\visitor.h" />
+    <ClInclude Include="src\smoothy\meta\preprocessor\cat.h" />
+    <ClInclude Include="src\smoothy\optimization\costfunction.h" />
+    <ClInclude Include="src\smoothy\optimization\criteria\functiontolerance.h" />
+    <ClInclude Include="src\smoothy\optimization\criteria\maxiteration.h" />
+    <ClInclude Include="src\smoothy\math\norm.h" />
+    <ClInclude Include="src\smoothy\math\norms\details\base.h" />
+    <ClInclude Include="src\smoothy\math\norms\l1.h" />
+    <ClInclude Include="src\smoothy\math\norms\l2.h" />
+    <ClInclude Include="src\smoothy\math\norms\regularized.h" />
+    <ClInclude Include="src\smoothy\optimization\criterion.h" />
+    <ClInclude Include="src\smoothy\optimization\gauge.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearch.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearches\bfgs.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearches\steepestdescent.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearches\stride.h" />
+    <ClInclude Include="src\smoothy\optimization\methods\linesearches\strides\armijogoldstein.h" />
+    <ClInclude Include="src\smoothy\optimization\problem.h" />
+    <ClInclude Include="src\smoothy\optimization\state.h" />
+    <ClInclude Include="src\smoothy\optimization\states\differentiable.h" />
+    <ClInclude Include="src\smoothy\optimization\states\iterable.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\problem.h" />
+    <ClInclude Include="src\smoothy\traits\problem.h" />
+    <ClInclude Include="src\smoothy\traits\point.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\point.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\dimension.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\precision.h" />
+    <ClInclude Include="src\smoothy\traits\fwd\value.h" />
+    <ClInclude Include="src\smoothy\traits\value.h" />
+    <ClInclude Include="src\smoothy\utils\adapter.h" />
+    <ClInclude Include="src\smoothy\utils\fwd\make_row.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
+    <None Include=".gitmodules" />
+    <None Include="PreLoad.cmake" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>

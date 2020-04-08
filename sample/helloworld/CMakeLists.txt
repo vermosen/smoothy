@@ -9,8 +9,6 @@ find_library(LIB_SMOOTHY NAMES smoothy)
 file(GLOB source_files
             "*.h"
             "*.cpp"
-            "tests/*.cpp"
-            "tests/*.h"
     )
 
 # Add source to this project's executable.

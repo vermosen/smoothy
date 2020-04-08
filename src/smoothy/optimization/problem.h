@@ -30,9 +30,9 @@ namespace optimization  {
               , const Criteria&     criteria
               , const Point&        guess   );
 
-        criteria_type&	criteria()  { return m_criteria;    }
-        Func<Point>&	function()  { return m_func;        }
-        state_type&		current ()  { return m_state;       }
+        criteria_type&	criteria() { return m_criteria;    }
+        Func<Point>&	function()   { return m_func;        }
+        state_type&		current ()   { return m_state;       }
 
     private:
         state_type		m_state     ;

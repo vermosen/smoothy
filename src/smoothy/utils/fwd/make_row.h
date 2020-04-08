@@ -4,8 +4,8 @@
 
 namespace smoothy   {
 
-    template<typename Val>
-    struct make_row;
+  template<typename Val>
+  struct make_row;
 }
 
 #endif

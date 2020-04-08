@@ -1,0 +1,76 @@
+cmake_minimum_required(VERSION 3.13)
+
+IF(CMAKE_PROFILE)
+	STRING(TOUPPER ${CMAKE_PROFILE} CMAKE_PROFILE_UC)
+	MESSAGE(STATUS "info: CMake profile has been set to ${CMAKE_PROFILE} --")
+ELSE()
+	# default configuration -> gcc92
+	SET(CMAKE_PROFILE_UC "GCC83")
+	MESSAGE(STATUS "info: defaulting CMake profile to ${CMAKE_PROFILE} --")
+ENDIF()
+
+IF(CMAKE_PROFILE_UC STREQUAL "GCC83")
+
+	MESSAGE(STATUS "info: detected gcc 8.3 profile")
+
+	# the backingtree location
+	SET(BACKINGTREE_ROOT "/opt/devtools")
+
+	SET(CPP_DIALECT "17" CACHE INTERNAL "" FORCE)
+
+	SET(CONAN_FLAGS "compiler.version=8.3")
+	SET(CONAN_FLAGS "${CONAN_FLAGS};arch=x86_64")
+	SET(CONAN_FLAGS "${CONAN_FLAGS};cppstd=${CPP_DIALECT}")
+	SET(CONAN_FLAGS "${CONAN_FLAGS};compiler.libcxx=libstdc++11")
+
+	SET(DEVTOOLS_ROOT			"${BACKINGTREE_ROOT}"					CACHE INTERNAL "" FORCE)
+	SET(CMAKE_C_COMPILER		"${DEVTOOLS_ROOT}/bin/gcc"				CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CXX_COMPILER		"${DEVTOOLS_ROOT}/bin/g++"				CACHE INTERNAL "" FORCE)
+	SET(CMAKE_LINKER			"${DEVTOOLS_ROOT}/bin/ld"				CACHE INTERNAL "" FORCE)
+	SET(COVERAGE_COMMAND		"${DEVTOOLS_ROOT}/usr/bin/gcov"			CACHE INTERNAL "" FORCE)
+	SET(MEMORYCHECK_COMMAND		"${DEVTOOLS_ROOT}/usr/bin/valgrind"		CACHE INTERNAL "" FORCE)
+	SET(VALGRIND_LIB			"${DEVTOOLS_ROOT}/lib64/valgrind"		CACHE INTERNAL "" FORCE)
+	SET(CMAKE_GENERATOR			"Unix Makefiles"						CACHE INTERNAL "" FORCE)
+	SET(CONAN_PROFILE			"gcc83"									CACHE INTERNAL "" FORCE)
+	SET(CONAN_EXTRA_SETTINGS	"${CONAN_FLAGS}"						CACHE INTERNAL "" FORCE)
+
+	# set the CUDA env
+	SET(CUDA_TOOLKIT_ROOT_DIR		"/usr/local/cuda-10.2"							CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CUDA_COMPILER			"${CUDA_TOOLKIT_ROOT_DIR}/bin/nvcc"				CACHE INTERNAL "" FORCE)
+	SET(CMAKE_CUDA_HOST_COMPILER	"${CMAKE_C_COMPILER}"							CACHE INTERNAL "" FORCE)
+
+ELSE()
+	MESSAGE(FATAL_ERROR "Error: ${CMAKE_PROFILE} - Unknown configuration passed. Aborting ... ")
+ENDIF()
+
+IF(CMAKE_CONF)
+	STRING(TOUPPER ${CMAKE_CONF} CMAKE_CONF_UC)
+	MESSAGE(STATUS "info: CMake build type has been set to ${CMAKE_CONF} --")
+ELSE()
+	SET(CMAKE_CONF_UC "RELEASE")
+	MESSAGE(STATUS "info: defaulting CMake build type to ${CMAKE_CONF} --")
+ENDIF()
+
+IF(CMAKE_CONF_UC STREQUAL "RELEASE")
+	MESSAGE(STATUS "info: cmake build type set to \"Release\" --")
+	SET(CMAKE_BUILD_TYPE "Release" CACHE INTERNAL "" FORCE)
+ELSEIF(CMAKE_CONF_UC STREQUAL "DEBUG")
+	MESSAGE(STATUS "info: cmake build type set to \"Debug\" --")
+	SET(CMAKE_BUILD_TYPE "Debug" CACHE INTERNAL "" FORCE)
+ELSEIF(CMAKE_CONF_UC STREQUAL "PROFILING")
+	MESSAGE(STATUS "info: cmake build type set to \"Profiling\" --")
+	SET(CMAKE_BUILD_TYPE "Profiling" CACHE INTERNAL "" FORCE)
+ELSE()
+	MESSAGE(FATAL_ERROR "Error: ${CMAKE_CONF} - Unknown build type passed. Aborting...")
+ENDIF()
+
+IF(DEFINED CMAKE_INSTALL_PREFIX)
+	SET(CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}" CACHE PATH "cmake install prefix" FORCE)
+ELSE()
+	SET(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/.." CACHE PATH "cmake install prefix" FORCE)
+ENDIF()
+
+MESSAGE(STATUS "installation directory set to ${CMAKE_INSTALL_PREFIX}")
+
+SET(CONAN_USER		"jvermosen"		CACHE STRING "thirdparty libs conan user"		FORCE)
+SET(CONAN_CHANNEL	"stable"		CACHE STRING "thirdparty libs conan channel"	FORCE)

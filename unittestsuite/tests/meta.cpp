@@ -1,5 +1,5 @@
-#include <tests/meta.h>
-#include <definitions.h>
+#include "meta.h"
+#include "../definitions.h"
 
 #include <smoothy/definitions.h>
 #include <smoothy/meta/patterns/curiousmixin.h>

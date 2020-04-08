@@ -1,32 +1,24 @@
-# CMakeList.txt : CMake project for smoothy, include source and define
-# project specific logic here.
-#
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.13)
 
-# set debug target
-if (CMAKE_CONF MATCHES "Debug")
-	set(CMAKE_BUILD_TYPE Debug)
-endif (CMAKE_CONF MATCHES "Debug")
+SET(TARGET_NAME unittestsuite)
 
-find_library(LIB_SMOOTHY NAMES smoothy)
+setup_component(TARGET ${TARGET_NAME})
 
-# add the project sources
-file(GLOB source_files
-            "*.h"
-            "*.cpp"
-            "tests/*.cpp"
-            "tests/*.h"
-    )
+file(GLOB_RECURSE TARGET_HEADERS "*.h")
+file(GLOB_RECURSE TARGET_SOURCES "*.cpp")
 
-# Add source to this project's executable.
-add_executable (smoothytest_${CMAKE_CONF} ${source_files})
-
-target_include_directories(smoothytest_${CMAKE_CONF} INTERFACE
-	"${SMOOTHY_INCLUDE_DIR}"
+add_executable(
+    ${TARGET_NAME}
+    ${TARGET_HEADERS}
+    ${TARGET_SOURCES}
 )
 
-target_include_directories(smoothytest_${CMAKE_CONF} INTERFACE
-	"${PROJECT_SOURCE_DIR}"
+target_link_libraries(${TARGET_NAME}
+	PUBLIC
+	CONAN_PKG::boost
+	Threads::Threads
+	INTERFACE
+	smoothy
 )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+install_binary(TARGET ${TARGET_NAME})
