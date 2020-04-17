@@ -1,13 +1,20 @@
+cmake_minimum_required (VERSION 3.13)
 
-cmake_minimum_required (VERSION 3.12)
+SET(TARGET_NAME smoothy)
 
-add_library(smoothy INTERFACE)
+setup_component(TARGET ${TARGET_NAME})
 
-target_include_directories(smoothy INTERFACE
-	"${CMAKE_CURRENT_SOURCE_DIR}"
+file(GLOB_RECURSE TARGET_HEADERS CONFIGURE_DEPENDS "*.h")
+file(GLOB_RECURSE TARGET_SOURCES CONFIGURE_DEPENDS "*.cpp")
+
+add_library(
+    ${TARGET_NAME} INTERFACE
 )
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/smoothy)
+#target_link_libraries(${TARGET_NAME} 
+#	PUBLIC 
+#	CONAN_PKG::eigen
+#	CONAN_PKG::pfr
+#)
 
-install(DIRECTORY . DESTINATION include/smoothy
-        FILES_MATCHING PATTERN "*.h")
+install_library(NAME ${TARGET_NAME} HEADERS ${TARGET_HEADERS})

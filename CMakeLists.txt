@@ -87,7 +87,20 @@ add_subdirectory(tests/unittestsuite)
 #add_testsuite(DIRECTORY unitestsuite)
 
 #####################################
-#          generate export          #
+#          generate exports         #
 #####################################
 
-#add_subdirectory(cmake/packaging)
+package_project(
+	NAME ${PROJECT_NAME}
+	NAMESPACE ${PROJECT_NAMESPACE}
+	SOURCE ${CMAKE_SOURCE_DIR}/cmake
+)
+
+conan_export(
+	PACKAGE ${PROJECT_NAME}
+	REVISION ${${PROJECT_NAME_U}_VERSION}
+	USER "jvermosen"
+	CHANNEL "stable"
+	PROFILE ${CONAN_PROFILE}
+	SETTINGS ${CONAN_EXTRA_SETTINGS}
+)	

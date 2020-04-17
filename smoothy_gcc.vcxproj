@@ -51,6 +51,7 @@
   <ItemGroup>
     <Text Include="cmake\CMakeLists.txt" />
     <Text Include="sample\CMakeLists.txt" />
+    <Text Include="sample\helloworld\CMakeLists.txt" />
     <Text Include="src\smoothy\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
   </ItemGroup>

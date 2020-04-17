@@ -71,6 +71,3 @@ ELSE()
 ENDIF()
 
 MESSAGE(STATUS "installation directory set to ${CMAKE_INSTALL_PREFIX}")
-
-SET(CONAN_USER		"jvermosen"		CACHE STRING "thirdparty libs conan user"		FORCE)
-SET(CONAN_CHANNEL	"stable"		CACHE STRING "thirdparty libs conan channel"	FORCE)

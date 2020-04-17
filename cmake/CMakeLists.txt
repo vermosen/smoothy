@@ -26,6 +26,12 @@ set(PFR_VERS      "1.0.0" )
 # enable the languages
 enable_language(C CXX CUDA)
 
+#TODO set with the project
+set(PROJECT_LIB_SUFFIX "lib")
+set(PROJECT_INCLUDE_SUFFIX "include")
+set(PROJECT_BIN_SUFFIX "bin/${CMAKE_BUILD_TYPE}")
+set(PROJECT_SRC_SUFFIX "src")
+
 # dialect
 set(CMAKE_CXX_STANDARD ${CXX_DIALECT})
 
