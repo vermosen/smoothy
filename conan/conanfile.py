@@ -2,18 +2,15 @@ import os
 from conans import ConanFile, tools
 
 class SmoothyConan(ConanFile):
-    name = "qsg-sign"
-    settings = "os", "compiler", "build_type", "arch"
-    description = "a utility project for qsg ressources"
-    url = "http://www.hap-capital.com/"
+    name = "smoothy"
+    description = "an optimization toolkit"
+    url = "https://github.com/vermosen/smoothy"
     license = ""
     author = "vermosen@yahoo.com"
     topics = None
     generators = 'cmake'
 
     name = "smoothy"
-    include_path = 'signal/base/cpp'
-    lib_name = 'libqsgsignalbase.a'
 
     cmake_files = ['%sConfig.cmake'        % name
                   ,'%sConfigVersion.cmake' % name
@@ -24,7 +21,6 @@ class SmoothyConan(ConanFile):
         pass
 
     def build_requirements(self):
-        self.build_requires("boost/1.72.0@%s/%s" % (self.user, self.channel))
         self.build_requires("pfr/1.0.0@%s/%s" % (self.user, self.channel))
         self.build_requires("eigen/3.3.7@%s/%s" % (self.user, self.channel))
 
@@ -32,9 +28,7 @@ class SmoothyConan(ConanFile):
         pass
 
     def package(self):
-        self.copy("*.h"  , dst="include/base/cpp", src="include/signal/base/cpp", keep_path=True)
-
-        self.copy(self.lib_name  , dst="lib"    , src="lib", keep_path=False)
+        self.copy("*.h"  , dst="include/smoothy", src="include/smoothy", keep_path=True)
 
         if self.settings.os == 'Linux':
             try:
@@ -76,5 +70,5 @@ class SmoothyConan(ConanFile):
                 # self.output.info('failed to parse cmake install files!')
                 pass
 
-    def package_info(self):
-        pass
+    def package_id(self):
+        self.info.header_only()
