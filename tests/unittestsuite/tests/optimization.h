@@ -4,27 +4,17 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "utils/point.h"
+
 namespace smoothy   {
-namespace testSuite {
-
-  // point classes for optimization tests
-  struct point2d {
-    double m_x1;
-    double m_x2;
-  };
-
-  struct point3d {
-    double m_x1;
-    double m_x2;
-    double m_x3;
-  };
+namespace testsuite {
 
   class optimization {
   public:
     static void rosenbrock_values();
-    static void set_criteria();
-    static void set_problem();
-    static void armijogoldstein_stride();
+    //static void set_criteria();
+    //static void set_problem();
+    //static void armijogoldstein_stride();
 
     static boost::unit_test_framework::test_suite* suite();
   };

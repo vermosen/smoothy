@@ -59,12 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\smoothy\definitions.h" />
-    <ClInclude Include="src\smoothy\meta\asm\clock.h" />
     <ClInclude Include="src\smoothy\meta\asm\comment.h" />
     <ClInclude Include="src\smoothy\meta\patterns\curiousmixin.h" />
     <ClInclude Include="src\smoothy\meta\patterns\fwd\curiousmixin.h" />
     <ClInclude Include="src\smoothy\meta\patterns\visitor.h" />
-    <ClInclude Include="src\smoothy\meta\preprocessor\cat.h" />
     <ClInclude Include="src\smoothy\optimization\costfunction.h" />
     <ClInclude Include="src\smoothy\optimization\criteria\functiontolerance.h" />
     <ClInclude Include="src\smoothy\optimization\criteria\maxiteration.h" />

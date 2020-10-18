@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 namespace smoothy   {
-namespace testSuite {
+namespace testsuite {
 
 	class meta {
 	public:

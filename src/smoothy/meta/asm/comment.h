@@ -2,7 +2,7 @@
 #ifndef SMOOTHY_META_ASM_COMMENT_H
 #define SMOOTHY_META_ASM_COMMENT_H
 
-#include <smoothy/meta/preprocessor/cat.h>
+#include <meta/preprocessor/cat.h>
 
 #ifdef PRINT_ASM
 #ifdef __GNUC__

@@ -5,10 +5,11 @@
 
 #include <smoothy/definitions.h>
 #include <smoothy/meta/patterns/curiousmixin.h>
-#include <smoothy/meta/asm/clock.h>
+
+#include <meta/cpuclock.h>
 
 namespace smoothy   {
-namespace testSuite {
+namespace testsuite {
 
     boost::unit_test_framework::test_suite* meta::suite() {
         boost::unit_test_framework::test_suite* suite = BOOST_TEST_SUITE("meta");
@@ -70,21 +71,17 @@ namespace testSuite {
 
     void meta::clockmeasurement()
     {
-        using namespace ::smoothy::meta;
+        using namespace meta::clock;
 
-        cpuid();
-        cpuid();
-        cpuid();
-
-        auto clock = timestamp<details::order::pre>();
+        auto start = cpu<position::pre>::now();
 
         auto res = fibo(100);
 
-        clock = timestamp<details::order::post>() - clock;
+        auto diff = cpu<position::post>::now() - start;
 
         std::stringstream sss;
         sss << "result: " << res << std::endl
-            << "duration: " << clock << " ticks" << std::endl;
+            << "duration: " << diff << " ticks" << std::endl;
 
         BOOST_TEST_MESSAGE(sss.str());
     }

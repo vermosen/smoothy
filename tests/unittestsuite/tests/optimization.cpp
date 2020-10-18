@@ -18,29 +18,17 @@
 
 #include <smoothy/optimization/methods/linesearches/strides/armijogoldstein.h>
 
-//#include <smoothy/utils/adapter.h>
-
-SMOOTHY_DATA_ADAPTER(
-      smoothy::testSuite::point2d
-    , double, m_x1, m_x2
-);
-
-SMOOTHY_DATA_ADAPTER(
-      smoothy::testSuite::point3d
-    , float, m_x1, m_x2, m_x3
-);
-
 namespace smoothy   {
-namespace testSuite {
+namespace testsuite {
 
     namespace opt = smoothy::optimization;
 
     boost::unit_test_framework::test_suite* optimization::suite() {
         boost::unit_test_framework::test_suite* suite = BOOST_TEST_SUITE("optimization");
         suite->add(BOOST_TEST_CASE(&optimization::rosenbrock_values     ), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::set_criteria          ), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::set_problem           ), 0, MAX_TIME_SEC);
-        suite->add(BOOST_TEST_CASE(&optimization::armijogoldstein_stride), 0, MAX_TIME_SEC);
+        //suite->add(BOOST_TEST_CASE(&optimization::set_criteria          ), 0, MAX_TIME_SEC);
+        //suite->add(BOOST_TEST_CASE(&optimization::set_problem           ), 0, MAX_TIME_SEC);
+        //suite->add(BOOST_TEST_CASE(&optimization::armijogoldstein_stride), 0, MAX_TIME_SEC);
         return suite;
     }
 
@@ -75,10 +63,12 @@ namespace testSuite {
 
         BOOST_TEST_MESSAGE("testing line search method...");
 
-        rosenbrock<point2d> func(1.0, 1.0);
+        using data_type = point<double, 2>;
 
-        rosenbrock<point2d>::value_type gradient = rosenbrock<point2d>::value_type::Zero();
-        rosenbrock<point2d>::value_type m_x = rosenbrock<point2d>::value_type::Zero();
+        rosenbrock<data_type> func(1.0, 1.0);
+
+        rosenbrock<data_type>::value_type gradient = rosenbrock<data_type>::value_type::Zero();
+        rosenbrock<data_type>::value_type m_x = rosenbrock<data_type>::value_type::Zero();
 
         {
             m_x(0, 0) = 0.5; m_x(0, 1) = 0.5;
@@ -101,7 +91,7 @@ namespace testSuite {
             BOOST_CHECK_CLOSE(res1, res2, T_TOL);
         }
     }
-
+    /*
     void optimization::set_criteria() {
         using namespace smoothy::optimization;
 
@@ -114,6 +104,7 @@ namespace testSuite {
     }
 
     void optimization::set_problem() {
+
         using namespace smoothy::optimization;
 
         using criteria_type = gauge<
@@ -121,7 +112,7 @@ namespace testSuite {
             , criteria::type::maxIterations
         >;
 
-        using value_type = point2d;
+        using value_type = point<double, 2>;
 
         using problem_type = problem<
               rosenbrock
@@ -131,9 +122,9 @@ namespace testSuite {
             , states::differentiable
         >;
 
-        rosenbrock<point2d> func(1.0, 1.0);
+        rosenbrock<value_type> func(1.0, 1.0);
         criteria_type c({ 1e-8 }, { 1000 });
-        point2d guess{ 1.0, 1.0 };
+        value_type guess { 1.0, 1.0 };
         problem_type p(func, c, guess);
     }
 
@@ -167,4 +158,6 @@ namespace testSuite {
 
         BOOST_CHECK_CLOSE(v, 1.025, T_TOL);
     }
+
+    */
 }}

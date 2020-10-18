@@ -44,7 +44,7 @@ project(
 set(EIGEN_VERS    "3.3.7" )
 set(BOOST_VERS    "1.72.0")
 set(PFR_VERS      "1.0.0" )
-set(META_VERS     "0.1.3" )
+set(META_VERS     "0.1.4" )
 
 set(PACKAGES 
 	eigen
