@@ -18,7 +18,7 @@
 
 #include <smoothy/optimization/methods/linesearches/strides/armijogoldstein.h>
 
-#include <smoothy/utils/adapter.h>
+//#include <smoothy/utils/adapter.h>
 
 SMOOTHY_DATA_ADAPTER(
       smoothy::testSuite::point2d

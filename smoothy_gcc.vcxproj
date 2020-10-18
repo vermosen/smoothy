@@ -13,13 +13,14 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{05376550-B43A-40B6-99E9-361E168C140A}</ProjectGuid>
     <Keyword>Linux</Keyword>
-    <RootNamespace>helloworld_gcc</RootNamespace>
+    <RootNamespace>smoothy</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
     <ApplicationTypeRevision>1.0</ApplicationTypeRevision>
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{FC1A4D80-50E9-41DA-9192-61C0DBAA00D2}</LinuxProjectType>
     <kProjectPath>/smoothy</kProjectPath>
+    <ProjectName>smoothy</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -34,7 +35,7 @@
   <ImportGroup Label="ExtensionSettings" />
   <ImportGroup Label="Shared" />
   <ImportGroup Label="PropertySheets">
-    <Import Project="$(GIT_ROOT)\utils\visualstudio\cmake.props" />
+    <Import Project="$(GIT_ROOT)\utils\visualstudio\cmake-home-v3.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -41,9 +41,15 @@ project(
 # import thirdparty packages #
 ##############################
 
+set(EIGEN_VERS    "3.3.7" )
+set(BOOST_VERS    "1.72.0")
+set(PFR_VERS      "1.0.0" )
+set(META_VERS     "0.1.3" )
+
 set(PACKAGES 
 	eigen
 	boost
+	meta
 	pfr
 )
 
@@ -90,17 +96,11 @@ add_subdirectory(tests/unittestsuite)
 #          generate exports         #
 #####################################
 
-package_project(
-	NAME ${PROJECT_NAME}
-	NAMESPACE ${PROJECT_NAMESPACE}
-	SOURCE ${CMAKE_SOURCE_DIR}/cmake
-)
-
 conan_export(
 	PACKAGE ${PROJECT_NAME}
 	REVISION ${${PROJECT_NAME_U}_VERSION}
-	USER "jvermosen"
-	CHANNEL "stable"
+	USER ${CONAN_USER}
+	CHANNEL ${CONAN_CHANNEL}
 	PROFILE ${CONAN_PROFILE}
 	SETTINGS ${CONAN_EXTRA_SETTINGS}
 )	

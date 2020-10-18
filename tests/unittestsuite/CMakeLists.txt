@@ -3,7 +3,7 @@
 #
 cmake_minimum_required (VERSION 3.12)
 
-if (CMAKE_BUILD_TYPE STREQUAL "debugasm")
+if (CMAKE_BUILD_TYPE STREQUAL "DebugAsm")
 	enable_language(ASM)
 endif()
 
@@ -11,11 +11,11 @@ find_library(LIB_SMOOTHY NAMES smoothy)
 
 # add the project sources
 file(GLOB source_files
-            "*.h"
-            "*.cpp"
-            "tests/*.cpp"
-            "tests/*.h"
-    )
+    "*.h"
+    "*.cpp"
+    "tests/*.cpp"
+    "tests/*.h"
+)
 
 # Add source to this project's executable.
 add_executable (smoothytest_${CMAKE_CONF} ${source_files})
