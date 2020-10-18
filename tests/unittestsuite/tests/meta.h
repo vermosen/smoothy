@@ -7,9 +7,8 @@
 namespace smoothy   {
 namespace testsuite {
 
-	class meta {
+	class meta_test {
 	public:
-    static void helloworld();
     static void curiousmixins();
     static void clockmeasurement();
 

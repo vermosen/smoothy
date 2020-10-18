@@ -5,7 +5,6 @@
 #include <Eigen/Core>
 #include <Eigen/Dense>
 
-#include <smoothy/traits/fwd/value.h>
 #include <smoothy/traits/fwd/precision.h>
 #include <smoothy/traits/fwd/dimension.h>
 

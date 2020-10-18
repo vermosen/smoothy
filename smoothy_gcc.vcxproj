@@ -41,13 +41,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
-    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.5\rubedo\stable\package\550b30b306f044e6ed33982393e219e79a832f0d\include;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.7\jvermosen\stable\package\c09bd06b25a18a19d5ece56575bd1c2d34d87142\include\eigen3;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
     <LocalRemoteCopySources>false</LocalRemoteCopySources>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <CleanCommandLine>$(R_DEFAULT_CLEANUP)</CleanCommandLine>
     <BuildCommandLine>$(R_DEFAULT_BUILD)</BuildCommandLine>
-    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.5\rubedo\stable\package\550b30b306f044e6ed33982393e219e79a832f0d\include;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeIncludeSearchPath>$(CONAN_DATA)\eigen\3.3.7\jvermosen\stable\package\c09bd06b25a18a19d5ece56575bd1c2d34d87142\include\eigen3;$(CONAN_DATA)\pfr\1.0.0\jvermosen\stable\package\5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9\include;C:\.conan\_5mi8kji\1\include;$(ProjectDir)src;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
   </PropertyGroup>
   <ItemGroup>
     <Text Include="cmake\CMakeLists.txt" />
@@ -102,8 +102,7 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include=".gitmodules" />
-    <None Include="cmake\smoothyConfig.cmake.in" />
-    <None Include="cmake\smoothyConfigVersion.cmake.in" />
+    <None Include="cmake\module\utils.cmake" />
     <None Include="conan\conanfile.py" />
     <None Include="PreLoad.cmake" />
   </ItemGroup>

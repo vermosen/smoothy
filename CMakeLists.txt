@@ -1,5 +1,7 @@
 cmake_minimum_required (VERSION 3.13)
 
+option(SKIP_CONAN_PACKAGE "skip conan package generation" OFF)
+
 set(PROJECT_HOME "${CMAKE_CURRENT_LIST_DIR}")
 set(PROJECT_NAME smoothy CACHE STRING "" FORCE)
 set(PROJECT_NAMESPACE smoothy CACHE STRING "" FORCE)
@@ -68,6 +70,30 @@ create_debug_conf(NAME ${PACKAGES})
 message(DEBUG "CONAN_LIBS set to ${CONAN_LIBS}")
 
 #####################################
+#          generate exports         #
+#####################################
+
+export_project(
+	NAME ${PROJECT_NAME}
+	NAMESPACE ${PROJECT_NAME}
+	REVISION ${${PROJECT_NAME_U}_VERSION}
+	DIRECTORY cmake/package # for later use
+)
+
+if (SKIP_CONAN_PACKAGE STREQUAL "OFF")
+
+	conan_export(
+		PACKAGE ${PROJECT_NAME}
+		REVISION ${${PROJECT_NAME_U}_VERSION}
+		USER ${CONAN_USER}
+		CHANNEL ${CONAN_CHANNEL}
+		PROFILE ${CONAN_PROFILE}
+		DIRECTORY conan
+	)
+
+endif()
+
+#####################################
 #          add the sources          #
 #####################################
 
@@ -91,16 +117,3 @@ add_subdirectory(tests/unittestsuite)
 #####################################
 
 #add_testsuite(DIRECTORY unitestsuite)
-
-#####################################
-#          generate exports         #
-#####################################
-
-conan_export(
-	PACKAGE ${PROJECT_NAME}
-	REVISION ${${PROJECT_NAME_U}_VERSION}
-	USER ${CONAN_USER}
-	CHANNEL ${CONAN_CHANNEL}
-	PROFILE ${CONAN_PROFILE}
-	SETTINGS ${CONAN_EXTRA_SETTINGS}
-)	

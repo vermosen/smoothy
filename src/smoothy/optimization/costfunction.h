@@ -3,7 +3,7 @@
 #define SMOOTHY_OPTIMIZATION_COST_FUNCTION_H
 
 #include <smoothy/definitions.h>
-#include <smoothy/traits/fwd/value.h>
+#include <smoothy/traits/value.h>
 #include <smoothy/traits/fwd/gradient.h>
 
 namespace smoothy       {

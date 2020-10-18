@@ -2,8 +2,10 @@
 
 #include <boost/pfr.hpp>
 
-namespace smoothy   {
-namespace testsuite {
+#include <smoothy/traits/fwd/dimension.h>
+#include <smoothy/traits/fwd/precision.h>
+
+namespace smoothy::testsuite {
 
   template <
       typename T
@@ -23,5 +25,17 @@ namespace testsuite {
     float m_x2;
     float m_x3;
   };
+}
 
-}}
+namespace smoothy::traits {
+
+  template<typename T, unsigned Dim>
+  struct precision<testsuite::point<T, Dim>> {
+    using type = T;
+  };
+
+  template<typename T, unsigned Dim>
+  struct dimension<testsuite::point<T, Dim>> {
+    static constexpr unsigned value = Dim;
+  };
+}
