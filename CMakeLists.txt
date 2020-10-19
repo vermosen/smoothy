@@ -46,13 +46,12 @@ project(
 set(EIGEN_VERS    "3.3.7" )
 set(BOOST_VERS    "1.72.0")
 set(PFR_VERS      "1.0.0" )
-set(META_VERS     "0.1.4" )
+set(META_VERS     "0.1.5" )
+set(GTEST_VERS    "1.8.1" )
 
 set(PACKAGES 
-	eigen
-	boost
-	meta
-	pfr
+	eigen boost
+	meta gtest pfr
 )
 
 message(STATUS "package list has been set to ${PACKAGES}")
@@ -110,10 +109,10 @@ add_subdirectory(src/smoothy)
 #####################################
 
 add_subdirectory(sample)
-add_subdirectory(tests/unittestsuite)
 
 #####################################
-# add the test suite to the project #
+#             ctest setup           #
 #####################################
 
-#add_testsuite(DIRECTORY unitestsuite)
+include(CTest)
+add_subdirectory(tests)

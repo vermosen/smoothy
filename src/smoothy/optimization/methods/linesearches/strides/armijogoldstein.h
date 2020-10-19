@@ -2,7 +2,7 @@
 #ifndef SMOOTHY_OPTIMIZATION_METHODS_LINESEARCHES_STRIDES_ARMIJO_GOLDBERG_H
 #define SMOOTHY_OPTIMIZATION_METHODS_LINESEARCHES_STRIDES_ARMIJO_GOLDBERG_H
 
-#include <smoothy/meta/asm/comment.h>
+#include <meta/utility/comment.h>
 
 #include <smoothy/traits/gradient.h>
 #include <smoothy/traits/problem.h>

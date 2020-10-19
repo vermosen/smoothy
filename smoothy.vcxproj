@@ -55,7 +55,8 @@
     <Text Include="sample\helloworld\CMakeLists.txt" />
     <Text Include="src\smoothy\CMakeLists.txt" />
     <Text Include="CMakeLists.txt" />
-    <Text Include="tests\unittestsuite\CMakeLists.txt" />
+    <Text Include="tests\CMakeLists.txt" />
+    <Text Include="tests\optimization\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\smoothy\definitions.h" />
@@ -93,10 +94,7 @@
     <ClInclude Include="src\smoothy\traits\fwd\precision.h" />
     <ClInclude Include="src\smoothy\traits\fwd\value.h" />
     <ClInclude Include="src\smoothy\traits\value.h" />
-    <ClInclude Include="tests\unittestsuite\definitions.h" />
-    <ClInclude Include="tests\unittestsuite\tests\meta.h" />
-    <ClInclude Include="tests\unittestsuite\tests\optimization.h" />
-    <ClInclude Include="tests\unittestsuite\utils\point.h" />
+    <ClInclude Include="tests\optimization\point.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
@@ -108,9 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sample\helloworld\main.cpp" />
-    <ClCompile Include="tests\unittestsuite\main.cpp" />
-    <ClCompile Include="tests\unittestsuite\tests\meta.cpp" />
-    <ClCompile Include="tests\unittestsuite\tests\optimization.cpp" />
+    <ClCompile Include="tests\optimization\main.cpp" />
   </ItemGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
