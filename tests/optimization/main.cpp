@@ -20,26 +20,29 @@
 namespace opt = smoothy::optimization;
 
 template<class Val>
-struct rosenbrock : public opt::costFunction<rosenbrock, Val> {
+struct rosenbrock;
+
+template<>
+struct rosenbrock<point<double, 2>> : public opt::costFunction<rosenbrock, point<double, 2>> {
 public:
-  using value_type = typename opt::costFunction<rosenbrock, Val>::value_type;
+  using value_type = typename opt::costFunction<rosenbrock, point<double, 2>>::value_type;
 
 public:
   rosenbrock(double a, double b) : m_a(a), m_b(b) {}
 
   smoothy::real operator()(value_type const& x) {
     return std::pow(m_a - x(0, 0), 2) + m_b *
-      std::pow(x(0, 1) - x(0, 0) * x(0, 0), 2);
+      std::pow(x(1, 0) - x(0, 0) * x(0, 0), 2);
   }
 
   smoothy::real valueAndGradientImpl(value_type& grad, const value_type& x) {
     this->gradientImpl(grad, x);
-    return grad(0, 1) * grad(0, 1) / (4 * m_b) + std::pow(m_a - x(0, 0), 2.0);
+    return grad(1, 0) * grad(1, 0) / (4 * m_b) + std::pow(m_a - x(0, 0), 2.0);
   }
 
   void gradientImpl(value_type& grad, const value_type& x) {
-    grad(0, 1) = 2 * m_b * (x(0, 1) - x(0, 0) * x(0, 0));
-    grad(0, 0) = x(0, 0) * (2.0 * (x(0, 0) - m_a) - grad(0, 1));
+    grad(1, 0) = 2 * m_b * (x(1, 0) - x(0, 0) * x(0, 0));
+    grad(0, 0) = x(0, 0) * (2.0 * (x(0, 0) - m_a) - grad(1, 0));
   }
 
   double m_a;
@@ -62,24 +65,27 @@ TEST(unittest, create_rosenbrock) {
   rosenbrock<data_type>::value_type m_x = rosenbrock<data_type>::value_type::Zero();
 
   {
-    m_x(0, 0) = 0.5; m_x(0, 1) = 0.5;
+    m_x(0, 0) = 0.5; m_x(1, 0) = 0.5;
     auto res1 = func(m_x);
     auto res2 = func.valueAndGradient(gradient, m_x);
-    EXPECT_NEAR(res1, res2, T_TOL);
+    EXPECT_NEAR(res1, 0.3125, T_TOL);
+    EXPECT_NEAR(res2, 0.3125, T_TOL);
   }
 
   {
-    m_x(0, 0) = 0.0; m_x(0, 1) = 1.0;
+    m_x(0, 0) = 0.0; m_x(1, 0) = 1.0;
     auto res1 = func(m_x);
     auto res2 = func.valueAndGradient(gradient, m_x);
-    EXPECT_NEAR(res1, res2, T_TOL);
+    EXPECT_NEAR(res1, 2.0, T_TOL);
+    EXPECT_NEAR(res2, 2.0, T_TOL);
   }
 
   {
-    m_x(0, 0) = 0.25; m_x(0, 1) = 0.75;
+    m_x(0, 0) = 0.25; m_x(1, 0) = 0.75;
     auto res1 = func(m_x);
     auto res2 = func.valueAndGradient(gradient, m_x);
-    EXPECT_NEAR(res1, res2, T_TOL);
+    EXPECT_NEAR(res1, 1.03515625, T_TOL);
+    EXPECT_NEAR(res2, 1.03515625, T_TOL);
   }
 }
 
@@ -107,7 +113,7 @@ TEST(unittest, set_problem) {
   using value_type = point<double, 2>;
 
   using problem_type = problem<
-    rosenbrock
+      rosenbrock
     , criteria_type
     , value_type
     , states::iterable
@@ -125,14 +131,14 @@ TEST(unittest, armijogoldstein_stride) {
   using namespace smoothy::optimization;
 
   using criteria_type = gauge<
-    criteria::type::functionTolerance
+      criteria::type::functionTolerance
     , criteria::type::maxIterations
   >;
 
   using value_type = point<double, 2>;
 
   using problem_type = problem<
-    rosenbrock
+      rosenbrock
     , criteria_type
     , value_type
     , states::iterable
