@@ -16,10 +16,11 @@ class SmoothyConan(ConanFile):
                   ,'%sTargets.cmake'       % name
                   ,'%sTargets-*.cmake'     % name]
 
-    def build_requirements(self):
-        self.build_requires("boost/[>=1.72.0]@%s/%s" % (self.user, self.channel))
-        self.build_requires("pfr/1.0.0@%s/%s" % (self.user, self.channel))
-        self.build_requires("eigen/3.3.7@%s/%s" % (self.user, self.channel))
+    def requirements(self):
+        self.requires("boost/[>=1.72.0]@%s/%s" % (self.user, self.channel))
+        self.requires("pfr/1.0.0@%s/%s" % (self.user, self.channel))
+        self.requires("eigen/3.3.7@%s/%s" % (self.user, self.channel))
+        self.requires("meta/0.1.8@%s/%s" % (self.user, self.channel))
 
     def source(self):
         self.run('git clone --recursive %s' % self.url)
