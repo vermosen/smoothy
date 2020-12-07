@@ -14,12 +14,13 @@ namespace optimization {
     criteria::type First
     , criteria::type ... Rest
   >
-    struct gauge<First, Rest...> : public criterion<First>
-    , public gauge<Rest...> {
+    struct gauge<First, Rest...> 
+      : public criterion<First>
+      , public gauge<Rest...> {
 
     gauge(const typename criterion<First >::pack& first
       , const typename criterion<Rest  >::pack&... rest...)
-      : gauge<Rest...>(rest...), criterion<First>(first) {}
+      : criterion<First>(first), gauge<Rest...>(rest...) {}
 
     template <typename State>
     criteria::type apply(State& from, State& to) {

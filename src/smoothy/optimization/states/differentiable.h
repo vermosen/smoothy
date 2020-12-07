@@ -4,18 +4,23 @@
 
 #include <smoothy/definitions.h>
 
-#include <smoothy/traits/fwd/point.h>
 #include <smoothy/traits/fwd/problem.h>
 #include <smoothy/traits/fwd/gradient.h>
+#include <smoothy/traits/fwd/value.h>
 
 namespace smoothy       {
 namespace optimization  {
 namespace states        {
 
-  template<typename Mixin>
+  template<typename Child>
   class differentiable {
-    using problem_type = typename traits::problem<Mixin>::type;
+    using problem_type  = typename traits::problem<Child>::type;
+    using value_type    = typename traits::value<problem_type>::type;
     using gradient_type = typename traits::gradient<problem_type>::type;
+
+    void update(const value_type& pos) {
+      // do something
+    }
 
   public:
     gradient_type m_gradient;

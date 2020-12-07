@@ -11,8 +11,11 @@ namespace norms     {
   public:
     /*typename traits::retval<Child>::type*/ 
     void apply(/*typename traits::arg<Child>::type vals*/) {
-      return Child::impl().apply_impl(/*vals*/);
+      return Child::impl().apply_impl(/*vals*/); // ???
     }
+
+  protected:
+    void apply_impl() {}
   };
 }}}
 

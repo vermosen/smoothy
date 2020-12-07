@@ -17,7 +17,7 @@ namespace strides       {
 	template<class Problem>
 	class armijoGoldstein : public stride<armijoGoldstein, Problem> {
 	private:
-        using base = stride<armijoGoldstein, Problem>;
+		using base = stride<armijoGoldstein, Problem>;
 
 	public:
 		armijoGoldstein(
@@ -29,24 +29,24 @@ namespace strides       {
 	protected:
 		friend base;
 
-        criteria::type computeImpl(
+		criteria::type compute_impl(
 			  Problem& p
 			, real& value);
 
-    private:
+	private:
 		real m_alpha;
 		real m_beta;
 	};
 
-    template<class Problem>
-    armijoGoldstein<Problem>::armijoGoldstein(
-          real eps, real alpha, real beta, size maxIter)
-        : base(eps, maxIter )
-        , m_alpha(alpha     )
-        , m_beta(beta       ) {}
+	template<class Problem>
+	inline armijoGoldstein<Problem>::armijoGoldstein(
+				real eps, real alpha, real beta, size maxIter)
+			: base(eps, maxIter )
+			, m_alpha(alpha     )
+			, m_beta(beta       ) {}
 
 	template<class Problem>
-	criteria::type armijoGoldstein<Problem>::computeImpl(
+	inline criteria::type armijoGoldstein<Problem>::compute_impl(
 		  Problem& p
 		, real& value) {
 
@@ -56,18 +56,18 @@ namespace strides       {
 		size iter = 0;
 
 		real f0 = p.current().m_f;
-		real nD0 = p.current().m_gradientNorm;
-        criteria::type res = criteria::type::none;
+		/* real nD0 = p.current().m_gradientNorm; */
+		criteria::type res = criteria::type::none;
 
 		real norm = current.m_direction.dot(
 			current.m_direction);
 
-		res = base::try_update(t/*, constraint*/);                  // bondary check !!! this is computing a new m_x
+		res = base::try_update(t/*, constraint*/);          // bondary check !!! this is computing a new m_x
 
 		if (res != criteria::type::none)
 			return res;
 
-		real f = (p.function())(current.m_x);		                // initial value
+		real f = (p.function())(current.m_x);		            // initial value
 
     NASM_COMMENT("start Armijo-Goldstein outer loop");
 		if ((f - f0) > -t * m_alpha * norm) {
@@ -91,11 +91,13 @@ namespace strides       {
 
 		value = t;
 
-		if (iter == base::m_maxUpdate)
+		if (iter == base::m_maxUpdate) {
 			return criteria::type::maxIterations;
-		else
+		} else {
 			return res;
+		}
 	}
+
 }}}
 
 #endif

@@ -4,15 +4,23 @@
 
 #include <smoothy/definitions.h>
 #include <smoothy/traits/fwd/problem.h>
+#include <smoothy/traits/fwd/value.h>
 
 namespace smoothy       {
 namespace optimization  {
 namespace states        {
 
-	template<typename Mixin>
+	template<typename Child>
   class iterable {
-    using problem_type = typename traits::problem<Mixin>::type;
   public:
+    using problem_type = typename traits::problem<Child>::type;
+    using value_type = typename traits::value<problem_type>::type;
+  public:
+    
+    void update(const value_type& pos) {
+      // do something
+    }
+
     size m_iterations;
     size m_stationaryStates;
   };

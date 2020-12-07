@@ -26,4 +26,4 @@ namespace math    {
   };
 }}
 
-#endif
+#endif // SMOOTHY_MATH_NORMS_L2_H

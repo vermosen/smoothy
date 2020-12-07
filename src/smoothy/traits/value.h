@@ -27,7 +27,7 @@ namespace traits  {
     , class Point
     , template<class> class ... Traits
   >
-    struct value<optimization::problem<Func, Criteria, Point, Traits...>> {
+  struct value<optimization::problem<Func, Criteria, Point, Traits...>> {
     using type = Eigen::Matrix<
         typename traits::precision<Point>::type
       , traits::dimension<Point>::value, 1

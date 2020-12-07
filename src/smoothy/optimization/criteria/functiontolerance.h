@@ -10,9 +10,9 @@ namespace optimization  {
     template <>
     class criterion<criteria::type::functionTolerance> {
     public:
-        struct pack {
-            double m_precision;
-        };
+    struct pack {
+        double m_precision;
+    };
 
         criterion(const pack& p) : m_pack(p) {}
 
@@ -23,4 +23,4 @@ namespace optimization  {
     };
 }}
 
-#endif
+#endif // SMOOTHY_OPTIMIZATION_CRITERIA_FUNCTIONTOLERANCE_H

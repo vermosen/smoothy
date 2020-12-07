@@ -11,7 +11,7 @@ namespace optimization  {
     class criterion<criteria::type::maxIterations> {
     public:
         struct pack {
-            unsigned m_max;
+          unsigned m_max;
         };
 
         criterion(const pack& p) : m_pack(p) {}
